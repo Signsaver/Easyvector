@@ -1,0 +1,225 @@
+.page { min-height: 100vh; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,11,12,0.93);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.navLogo {
+  font-family: var(--font-display);
+  font-size: 1.8rem; letter-spacing: 0.05em;
+}
+.navLogo span { color: var(--accent); }
+.navRight { display: flex; align-items: center; gap: 1rem; }
+.planBadge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  color: var(--accent); border: 1px solid rgba(245,130,10,0.3);
+  border-radius: 4px; padding: 4px 10px;
+}
+.upgradeBtn {
+  background: var(--accent); color: #000;
+  padding: 0.5rem 1.2rem; font-weight: 500;
+  font-size: 0.82rem; border-radius: 6px;
+  transition: background 0.2s;
+}
+.upgradeBtn:hover { background: var(--accent2); }
+
+/* WRAP */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; }
+
+/* WELCOME */
+.welcome { margin-bottom: 2rem; }
+.welcome h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem; letter-spacing: 0.03em;
+  margin-bottom: 0.3rem;
+}
+.welcome p { color: var(--muted); font-size: 0.95rem; }
+
+/* BANNERS */
+.freeBanner {
+  background: var(--accent-dim);
+  border: 1px solid rgba(245,130,10,0.2);
+  border-radius: 8px; padding: 0.85rem 1.25rem;
+  display: flex; align-items: center; gap: 0.75rem;
+  margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--accent2);
+}
+.freeBanner strong { color: var(--text); }
+
+.upgradeBanner {
+  background: var(--surface2);
+  border: 1px solid var(--accent);
+  border-radius: 8px; padding: 1.1rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; margin-bottom: 1.5rem;
+}
+.upgradeBanner strong { display: block; margin-bottom: 0.2rem; }
+.upgradeBanner p { font-size: 0.82rem; color: var(--muted); }
+.upgradeBannerBtn {
+  background: var(--accent); color: #000;
+  padding: 0.65rem 1.5rem; font-weight: 500;
+  border-radius: 6px; white-space: nowrap;
+  transition: background 0.2s;
+}
+.upgradeBannerBtn:hover { background: var(--accent2); }
+
+/* ERROR */
+.errorBanner {
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.2);
+  border-radius: 8px; padding: 0.9rem 1.25rem;
+  font-size: 0.85rem; color: var(--error);
+  margin-bottom: 1.25rem;
+}
+
+/* CONTROLS */
+.controls {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  display: grid; grid-template-columns: 1fr 1fr 1fr auto;
+  gap: 1rem; align-items: end;
+}
+.controlGroup label {
+  display: block;
+  font-family: var(--font-mono); font-size: 0.65rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.45rem;
+}
+.controlGroup select {
+  width: 100%; background: var(--surface2);
+  border: 1px solid var(--border2); border-radius: 6px;
+  color: var(--text); font-size: 0.85rem;
+  padding: 0.6rem 2.2rem 0.6rem 0.9rem;
+  appearance: none; transition: border-color 0.2s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7672' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.9rem center;
+}
+.controlGroup select:focus { outline: none; border-color: var(--accent); }
+.traceBtn {
+  background: var(--accent); color: #000; border: none;
+  border-radius: 6px; font-family: var(--font-display);
+  font-size: 1.1rem; letter-spacing: 0.1em;
+  padding: 0.65rem 2rem; transition: all 0.2s;
+  white-space: nowrap;
+}
+.traceBtn:hover:not(:disabled) { background: var(--accent2); transform: translateY(-1px); }
+.traceBtn:disabled { background: var(--surface3); color: var(--muted2); cursor: not-allowed; }
+
+/* WORKSPACE */
+.workspace {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-bottom: 1.25rem; min-height: 360px;
+}
+.panel { background: var(--surface); display: flex; flex-direction: column; }
+.panelHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 1.4rem; border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.panelLabel {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
+.panelStatus { font-size: 0.72rem; color: var(--muted2); display: flex; align-items: center; gap: 0.4rem; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted2); flex-shrink: 0; }
+.dotActive { background: var(--success); box-shadow: 0 0 6px var(--success); }
+.dotProcessing { background: var(--accent); animation: blink 1s ease-in-out infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+.panelBody {
+  flex: 1; display: flex; align-items: center;
+  justify-content: center; padding: 1.75rem;
+}
+
+/* DROP ZONE */
+.dropZone {
+  width: 100%; min-height: 260px; border: 1.5px dashed var(--border2);
+  border-radius: 8px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.85rem; cursor: pointer; transition: all 0.25s;
+}
+.dropZone:hover, .dragover { border-color: var(--accent); background: var(--accent-dim); }
+.dropIcon {
+  width: 48px; height: 48px; border: 1.5px solid var(--border2);
+  border-radius: 8px; display: flex; align-items: center;
+  justify-content: center; color: var(--muted); transition: all 0.25s;
+}
+.dropZone:hover .dropIcon { border-color: var(--accent); color: var(--accent); }
+.dropText { text-align: center; }
+.dropText strong { display: block; font-size: 0.88rem; margin-bottom: 0.2rem; }
+.dropText span { font-size: 0.76rem; color: var(--muted); }
+.dropFormats { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted2); letter-spacing: 0.08em; }
+
+.previewWrap { position: relative; text-align: center; }
+.previewImg { max-width: 100%; max-height: 260px; object-fit: contain; border-radius: 4px; }
+.clearBtn {
+  position: absolute; top: 0.5rem; right: 0.5rem;
+  background: rgba(0,0,0,0.7); color: var(--text);
+  border: 1px solid var(--border2); border-radius: 4px;
+  font-size: 0.72rem; padding: 4px 10px; transition: all 0.2s;
+}
+.clearBtn:hover { background: var(--error); border-color: var(--error); }
+
+/* RESULT */
+.resultPlaceholder { text-align: center; color: var(--muted2); }
+.resultPlaceholder svg { margin-bottom: 0.6rem; opacity: 0.25; }
+.resultPlaceholder p { font-size: 0.8rem; }
+.resultWrap { width: 100%; display: flex; align-items: center; justify-content: center; }
+.resultImg { max-width: 100%; max-height: 260px; object-fit: contain; }
+
+/* PROCESSING */
+.processingWrap {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1rem;
+}
+.scanWrap { width: 110px; height: 2px; background: var(--surface3); border-radius: 2px; overflow: hidden; }
+.scanBar {
+  height: 100%; width: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: sweep 1.2s ease-in-out infinite;
+}
+@keyframes sweep { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+.processLabel {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent);
+}
+
+/* DOWNLOAD BAR */
+.downloadBar {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1.1rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+}
+.downloadInfo strong { display: block; font-size: 0.88rem; margin-bottom: 0.15rem; }
+.downloadInfo span { font-size: 0.76rem; color: var(--muted); }
+.downloadActions { display: flex; gap: 0.5rem; }
+.downloadBtn {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  padding: 8px 16px; border-radius: 5px;
+  background: var(--accent); color: #000; font-weight: 500;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  transition: background 0.2s;
+}
+.downloadBtn:hover { background: var(--accent2); }
+.newTraceBtn {
+  font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em;
+  padding: 8px 16px; border-radius: 5px;
+  background: var(--surface2); color: var(--text);
+  border: 1px solid var(--border2); transition: all 0.2s;
+}
+.newTraceBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 768px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+  .workspace { grid-template-columns: 1fr; }
+  .nav { padding: 1rem 1.25rem; }
+}

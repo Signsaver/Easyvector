@@ -1,0 +1,192 @@
+.section {
+  padding: 5rem 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 2.5rem; }
+
+.header { text-align: center; margin-bottom: 2.5rem; }
+
+.sectionLabel {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.6rem;
+  display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+}
+.sectionLabel::before, .sectionLabel::after {
+  content: ''; display: block; width: 20px; height: 1px; background: var(--accent);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.03em; line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-size: 0.95rem; color: var(--muted);
+  max-width: 520px; margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* TABS */
+.tabs {
+  display: flex; gap: 0.75rem; justify-content: center;
+  margin-bottom: 2rem; flex-wrap: wrap;
+}
+.tab {
+  background: var(--bg); border: 1px solid var(--border2);
+  border-radius: 8px; padding: 0.75rem 1.25rem;
+  text-align: center; cursor: pointer;
+  transition: all 0.2s; min-width: 160px;
+}
+.tab:hover { border-color: var(--accent); }
+.tabActive {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.tabLabel {
+  display: block; font-weight: 500;
+  font-size: 0.88rem; margin-bottom: 0.2rem;
+  color: var(--text);
+}
+.tabActive .tabLabel { color: var(--accent); }
+.tabDesc { font-size: 0.72rem; color: var(--muted); }
+
+/* COMPARE */
+.compareWrap {
+  position: relative; width: 100%; height: 380px;
+  border-radius: 12px; overflow: hidden;
+  cursor: col-resize; user-select: none;
+  border: 1px solid var(--border2);
+  background: var(--bg);
+}
+
+/* AFTER panel — vector */
+.afterPanel {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+}
+.afterLabel {
+  position: absolute; top: 1rem; right: 1rem;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text); background: rgba(10,11,12,0.8);
+  border: 1px solid var(--border2); border-radius: 4px;
+  padding: 4px 10px; display: flex; align-items: center; gap: 0.4rem;
+  z-index: 2;
+}
+.labelDot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+/* BEFORE panel — bitmap */
+.beforePanel {
+  position: absolute; top: 0; left: 0; height: 100%;
+  overflow: hidden; z-index: 1;
+  background: var(--surface2);
+}
+.beforeLabel {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text); background: rgba(10,11,12,0.8);
+  border: 1px solid var(--border2); border-radius: 4px;
+  padding: 4px 10px; display: flex; align-items: center; gap: 0.4rem;
+  z-index: 3; white-space: nowrap;
+}
+.bitmapDisplay {
+  position: relative; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.pixelOverlay {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,29,31,0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,29,31,0.4) 1px, transparent 1px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+
+/* SVG display */
+.svgDisplay {
+  width: 280px; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.svgDisplay svg { width: 100%; height: 100%; }
+
+/* SLIDER */
+.sliderHandle {
+  position: absolute; top: 0; bottom: 0;
+  transform: translateX(-50%);
+  z-index: 10; pointer-events: none;
+}
+.sliderLine {
+  position: absolute; top: 0; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 2px; background: var(--accent);
+  box-shadow: 0 0 12px rgba(245,130,10,0.5);
+}
+.sliderKnob {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px; height: 44px;
+  background: var(--accent); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; color: #000;
+  box-shadow: 0 2px 12px rgba(245,130,10,0.4);
+  pointer-events: all; cursor: col-resize;
+}
+
+/* DRAG HINT */
+.dragHint {
+  position: absolute; bottom: 1.5rem; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono); font-size: 0.68rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--accent); background: rgba(10,11,12,0.85);
+  border: 1px solid rgba(245,130,10,0.3); border-radius: 4px;
+  padding: 6px 14px; display: flex; align-items: center; gap: 0.5rem;
+  z-index: 5; animation: fadeIn 0.5s ease;
+  pointer-events: none;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateX(-50%) translateY(8px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+/* STATS ROW */
+.statsRow {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-top: 2rem;
+}
+.statBox { background: var(--bg); padding: 1.25rem; text-align: center; }
+.statVal {
+  font-family: var(--font-display);
+  font-size: 2rem; color: var(--accent);
+  line-height: 1; margin-bottom: 0.3rem;
+}
+.statLabel { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* CTA */
+.cta {
+  text-align: center; margin-top: 2.5rem;
+}
+.cta p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.25rem; }
+.ctaBtn {
+  display: inline-block;
+  background: var(--accent); color: #000;
+  padding: 0.9rem 2.5rem; font-weight: 500;
+  font-size: 0.95rem; border-radius: 6px;
+  transition: background 0.2s, transform 0.1s;
+}
+.ctaBtn:hover { background: var(--accent2); transform: translateY(-1px); }
+
+@media (max-width: 768px) {
+  .compareWrap { height: 280px; }
+  .svgDisplay { width: 200px; height: 200px; }
+  .tabs { flex-direction: column; align-items: center; }
+  .tab { width: 100%; max-width: 320px; }
+  .statsRow { grid-template-columns: repeat(2,1fr); }
+}

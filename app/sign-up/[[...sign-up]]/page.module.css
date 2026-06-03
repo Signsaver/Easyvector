@@ -1,0 +1,49 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.logo span { color: var(--accent); }
+
+.offer {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: var(--accent-dim);
+  border: 1px solid rgba(245,130,10,0.2);
+  border-radius: 8px;
+  padding: 0.9rem 1.5rem;
+  max-width: 420px;
+  width: 100%;
+}
+
+.offerBadge {
+  display: block;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.offer p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.offer strong { color: var(--text); }
+
+.clerkBox { width: 100%; max-width: 420px; }
