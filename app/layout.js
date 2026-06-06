@@ -20,10 +20,10 @@ const dmMono = DM_Mono({
 export const metadata = {
   metadataBase: new URL('https://easyvector.ai'),
   title: {
-    default: 'EasyVector.ai — Convert AI Logos & Bitmaps to Vectors Instantly',
+    default: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
     template: '%s — EasyVector.ai',
   },
-  description: 'Purpose-built for sign makers, print shops, CNC operators and exhibition builders. Convert AI-generated logos and bitmap images to clean SVG, EPS, DXF and PDF vectors in seconds. No redrawing required.',
+  description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
   keywords: [
     'bitmap to vector',
     'image to vector converter',
@@ -66,8 +66,8 @@ export const metadata = {
     locale: 'en_GB',
     url: 'https://easyvector.ai',
     siteName: 'EasyVector.ai',
-    title: 'EasyVector.ai — Convert AI Logos & Bitmaps to Vectors Instantly',
-    description: 'Purpose-built for sign makers, print shops, CNC operators and exhibition builders. Convert AI-generated logos and bitmap images to clean SVG, EPS, DXF and PDF vectors in seconds.',
+    title: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
+    description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
     images: [
       {
         url: '/og-image.png',
@@ -79,8 +79,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'EasyVector.ai — Convert AI Logos & Bitmaps to Vectors Instantly',
-    description: 'Purpose-built for sign makers, print shops, CNC operators and exhibition builders. Convert AI-generated logos and bitmap images to clean vectors in seconds.',
+    title: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
+    description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
     images: ['/og-image.png'],
   },
   alternates: {
