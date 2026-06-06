@@ -256,10 +256,10 @@ export default async function Home() {
       <footer className={styles.footer}>
         <Image src="/logo.svg" alt="EasyVector.ai" width={220} height={42} />
         <ul className={styles.footerLinks}>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><Link href="/privacy">Privacy</Link></li>
+          <li><Link href="/terms">Terms</Link></li>
           <li><Link href="/how-it-works">How It Works</Link></li>
-          <li><a href="#">Support</a></li>
+          <li><Link href="/support">Support</Link></li>
         </ul>
       </footer>
 
