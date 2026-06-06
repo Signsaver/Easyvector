@@ -9,7 +9,7 @@ export default function SignInPage() {
       <Link href="/"><Image src="/logo.svg" alt="EasyVector.ai" width={260} height={50} priority /></Link>
       <SignIn
         appearance={{ elements: { rootBox: styles.clerkBox } }}
-        redirectUrl="/dashboard"
+        forceRedirectUrl="/dashboard"
         signUpUrl="/sign-up"
       />
     </div>
