@@ -46,6 +46,9 @@ export const metadata = {
   publisher: 'Signsaver Ltd',
   verification: {
     google: '6b4Bn5NhKkmPdSF6eybD5UWh9Bo5XuOo64PBqqvzOeY',
+    other: {
+      'msvalidate.01': 'E8D78F1F4D4D3D6812CAE3CC3DBE3551',
+    },
   },
   robots: {
     index: true,
