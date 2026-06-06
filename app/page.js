@@ -1,7 +1,22 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Demo from './components/Demo';
+
+async function handleCheckout(priceId) {
+  const res = await fetch('/api/create-checkout', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ priceId }),
+  });
+  const data = await res.json();
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    alert('Something went wrong. Please try again.');
+  }
+}
 
 export default function Home() {
   return (
@@ -165,7 +180,7 @@ export default function Home() {
                 <li className={styles.highlight}>Email support</li>
                 <li>Single user</li>
               </ul>
-              <Link href="/sign-up" className={styles.btnGhost} style={{display:'block',textAlign:'center'}}>Start Free Trial</Link>
+              <button onClick={() => handleCheckout('price_1Te924L0DPwWCCgGKMTFTYRP')} className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
             </div>
 
             <div className={`${styles.priceCard} ${styles.featured}`}>
@@ -181,7 +196,7 @@ export default function Home() {
                 <li className={styles.highlight}>Priority email support</li>
                 <li>Max 30MB file size</li>
               </ul>
-              <Link href="/sign-up" className={styles.btnPrimary} style={{display:'block',textAlign:'center'}}>Start Free Trial</Link>
+              <button onClick={() => handleCheckout('price_1Te92mL0DPwWCCgGhp8DW77U')} className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
             </div>
 
             <div className={styles.priceCard}>
@@ -196,7 +211,7 @@ export default function Home() {
                 <li className={styles.highlight}>API access</li>
                 <li className={styles.highlight}>Priority support &amp; onboarding</li>
               </ul>
-              <Link href="/sign-up" className={styles.btnGhost} style={{display:'block',textAlign:'center'}}>Start Free Trial</Link>
+              <button onClick={() => handleCheckout('price_1Te955L0DPwWCCgGmFxM4C4H')} className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
             </div>
 
           </div>
