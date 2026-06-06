@@ -44,6 +44,9 @@ export const metadata = {
   authors: [{ name: 'Signsaver Ltd', url: 'https://easyvector.ai' }],
   creator: 'Signsaver Ltd',
   publisher: 'Signsaver Ltd',
+  verification: {
+    google: '6b4Bn5NhKkmPdSF6eybD5UWh9Bo5XuOo64PBqqvzOeY',
+  },
   robots: {
     index: true,
     follow: true,
