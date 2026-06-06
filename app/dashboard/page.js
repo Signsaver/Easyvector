@@ -6,6 +6,37 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 
+const MAX_MEGAPIXELS = 2.8;
+
+async function resizeImageIfNeeded(file) {
+  return new Promise((resolve) => {
+    const img = document.createElement('img');
+    const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const megapixels = (img.width * img.height) / 1_000_000;
+      if (megapixels <= MAX_MEGAPIXELS) {
+        URL.revokeObjectURL(url);
+        resolve(file);
+        return;
+      }
+      const scale = Math.sqrt((MAX_MEGAPIXELS * 1_000_000) / (img.width * img.height));
+      const newWidth = Math.floor(img.width * scale);
+      const newHeight = Math.floor(img.height * scale);
+      const canvas = document.createElement('canvas');
+      canvas.width = newWidth;
+      canvas.height = newHeight;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, newWidth, newHeight);
+      URL.revokeObjectURL(url);
+      canvas.toBlob((blob) => {
+        const resizedFile = new File([blob], file.name, { type: 'image/jpeg' });
+        resolve(resizedFile);
+      }, 'image/jpeg', 0.92);
+    };
+    img.src = url;
+  });
+}
+
 export default function Dashboard() {
   const { user } = useUser();
   const [file, setFile] = useState(null);
@@ -22,6 +53,7 @@ export default function Dashboard() {
   const [credits, setCredits] = useState(null);
   const [plan, setPlan] = useState('free');
   const [loadingCredits, setLoadingCredits] = useState(true);
+  const [resized, setResized] = useState(false);
   const fileRef = useRef();
 
   useEffect(() => {
@@ -45,10 +77,22 @@ export default function Dashboard() {
   const isFreePlan = plan === 'free';
   const freeTracesLeft = credits ?? 0;
 
-  function handleFile(f) {
+  async function handleFile(f) {
     if (!f || !f.type.startsWith('image/')) return;
-    setFile(f);
-    setPreview(URL.createObjectURL(f));
+    setResized(false);
+    const originalMegapixels = await new Promise((resolve) => {
+      const img = document.createElement('img');
+      const url = URL.createObjectURL(f);
+      img.onload = () => { URL.revokeObjectURL(url); resolve((img.width * img.height) / 1_000_000); };
+      img.src = url;
+    });
+    let processedFile = f;
+    if (originalMegapixels > MAX_MEGAPIXELS) {
+      processedFile = await resizeImageIfNeeded(f);
+      setResized(true);
+    }
+    setFile(processedFile);
+    setPreview(URL.createObjectURL(processedFile));
     setResult(null);
     setResultUrl(null);
     setError('');
@@ -100,7 +144,6 @@ export default function Dashboard() {
       setResult(blob);
       setResultUrl(url);
 
-      // Deduct credit from Supabase
       const deductRes = await fetch('/api/credits', { method: 'POST' });
       const deductData = await deductRes.json();
       if (deductData.credits !== undefined) {
@@ -215,6 +258,13 @@ export default function Dashboard() {
           </button>
         </div>
 
+        {/* RESIZED NOTICE */}
+        {resized && (
+          <div style={{background:'rgba(245,130,10,0.08)', border:'1px solid rgba(245,130,10,0.2)', borderRadius:'8px', padding:'0.7rem 1.25rem', fontSize:'0.82rem', color:'#ffaa45', marginBottom:'1rem'}}>
+            ℹ Image was automatically resized to fit the 3MP limit — quality is preserved.
+          </div>
+        )}
+
         {/* ERROR */}
         {error && <div className={styles.errorBanner}>⚠ {error}</div>}
 
@@ -261,7 +311,7 @@ export default function Dashboard() {
               ) : (
                 <div className={styles.previewWrap}>
                   <img src={preview} alt="Input" className={styles.previewImg} />
-                  <button className={styles.clearBtn} onClick={() => { setFile(null); setPreview(null); setResult(null); setResultUrl(null); }}>
+                  <button className={styles.clearBtn} onClick={() => { setFile(null); setPreview(null); setResult(null); setResultUrl(null); setResized(false); }}>
                     ✕ Clear
                   </button>
                 </div>
@@ -320,7 +370,7 @@ export default function Dashboard() {
                 </svg>
                 Download {format.toUpperCase()}
               </a>
-              <button className={styles.newTraceBtn} onClick={() => { setFile(null); setPreview(null); setResult(null); setResultUrl(null); }}>
+              <button className={styles.newTraceBtn} onClick={() => { setFile(null); setPreview(null); setResult(null); setResultUrl(null); setResized(false); }}>
                 New Trace
               </button>
             </div>
