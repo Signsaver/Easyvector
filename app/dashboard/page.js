@@ -25,7 +25,7 @@ export default function Dashboard() {
   const fileRef = useRef();
 
   const freeTracesLeft = FREE_TRACE_LIMIT - tracesUsed;
-  const isFreePlan = true; // Will be replaced with real plan check
+  const isFreePlan = true;
 
   function handleFile(f) {
     if (!f || !f.type.startsWith('image/')) return;
@@ -104,7 +104,27 @@ export default function Dashboard() {
           {isFreePlan && (
             <a href="/#pricing" className={styles.upgradeBtn}>Upgrade</a>
           )}
-          <UserButton afterSignOutUrl="/" />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                userButtonPopoverCard: {
+                  background: '#1a1d1f',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  boxShadow: '0 8px 40px rgba(0,0,0,0.6)',
+                },
+                userButtonPopoverActionButton: { color: '#f0ede8' },
+                userButtonPopoverActionButtonText: { color: '#f0ede8' },
+                userButtonPopoverActionButtonIcon: { color: '#888580' },
+                userButtonPopoverFooter: {
+                  background: '#1a1d1f',
+                  borderTop: '1px solid rgba(255,255,255,0.08)',
+                },
+                userPreviewMainIdentifier: { color: '#f0ede8' },
+                userPreviewSecondaryIdentifier: { color: '#888580' },
+              }
+            }}
+          />
         </div>
       </nav>
 
@@ -263,7 +283,7 @@ export default function Dashboard() {
         {resultUrl && (
           <div className={styles.downloadBar}>
             <div className={styles.downloadInfo}>
-              <strong>signtrace-result.{format}</strong>
+              <strong>easyvector-result.{format}</strong>
               <span>{result ? (result.size / 1024).toFixed(1) + ' KB' : ''} · {format.toUpperCase()} · Ready</span>
             </div>
             <div className={styles.downloadActions}>
