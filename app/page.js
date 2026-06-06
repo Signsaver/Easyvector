@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Demo from './components/Demo';
-import { HobbyButton, ProButton, StudioButton, TestButton } from './components/CheckoutButtons';
+import { HobbyButton, ProButton, StudioButton } from './components/CheckoutButtons';
 import { auth } from '@clerk/nextjs/server';
 
 export default async function Home() {
@@ -149,12 +149,6 @@ export default async function Home() {
           <div className={styles.sectionLabel}>Pricing</div>
           <div className={styles.sectionTitle}>STRAIGHTFORWARD PLANS</div>
           <div className={styles.pricingSubtitle}>All paid plans include a 14-day free trial. No credit card required to register.</div>
-
-          {/* ADMIN TEST BUTTON — REMOVE BEFORE LAUNCH */}
-          <div style={{marginBottom:'1.5rem', padding:'1rem', border:'1px dashed rgba(245,130,10,0.4)', borderRadius:'8px', background:'rgba(245,130,10,0.05)'}}>
-            <div style={{fontSize:'0.7rem', fontFamily:'monospace', color:'#f5820a', marginBottom:'0.5rem', textTransform:'uppercase', letterSpacing:'0.1em'}}>⚠ Admin Test Only — Remove Before Launch</div>
-            <TestButton />
-          </div>
 
           <div className={styles.pricingGrid4}>
 
