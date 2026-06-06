@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Demo from './components/Demo';
+import { HobbyButton, ProButton, StudioButton, TestButton } from './components/CheckoutButtons';
 import { auth } from '@clerk/nextjs/server';
 
 export default async function Home() {
@@ -181,7 +182,7 @@ export default async function Home() {
                 <li className={styles.highlight}>Email support</li>
                 <li>Single user</li>
               </ul>
-              <HobbyButton />
+              <HobbyButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
             <div className={`${styles.priceCard} ${styles.featured}`}>
@@ -197,7 +198,7 @@ export default async function Home() {
                 <li className={styles.highlight}>Priority email support</li>
                 <li>Max 30MB file size</li>
               </ul>
-              <ProButton />
+              <ProButton className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
             <div className={styles.priceCard}>
@@ -212,7 +213,7 @@ export default async function Home() {
                 <li className={styles.highlight}>API access</li>
                 <li className={styles.highlight}>Priority support &amp; onboarding</li>
               </ul>
-              <StudioButton />
+              <StudioButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
           </div>
@@ -269,18 +270,4 @@ export default async function Home() {
 
     </div>
   );
-}
-
-// Individual button components
-function HobbyButton() {
-  return <CheckoutButton priceId="price_1Te924L0DPwWCCgGKMTFTYRP" label="Start Free Trial" className="btnGhost" />;
-}
-function ProButton() {
-  return <CheckoutButton priceId="price_1Te92mL0DPwWCCgGhp8DW77U" label="Start Free Trial" className="btnPrimary" />;
-}
-function StudioButton() {
-  return <CheckoutButton priceId="price_1Te955L0DPwWCCgGmFxM4C4H" label="Start Free Trial" className="btnGhost" />;
-}
-function TestButton() {
-  return <CheckoutButton priceId="price_1TfPi6L0DPwWCCgGIJNkzKMW" label="Test Payment — £1.00" className="btnPrimary" />;
 }
