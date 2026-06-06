@@ -75,20 +75,12 @@ input, select, textarea { font-family: var(--font-body); }
   outline: none !important;
   background: #313538 !important;
 }
-.cl-formFieldLabel {
-  color: #f0ede8 !important;
-}
+.cl-formFieldLabel { color: #f0ede8 !important; }
 .cl-formFieldHintText,
-.cl-formFieldErrorText {
-  color: #888580 !important;
-}
+.cl-formFieldErrorText { color: #888580 !important; }
 .cl-identityPreviewText,
-.cl-identityPreviewEditButton {
-  color: #f0ede8 !important;
-}
-.cl-internal-b3fm6y {
-  background: #0a0b0c !important;
-}
+.cl-identityPreviewEditButton { color: #f0ede8 !important; }
+.cl-internal-b3fm6y { background: #0a0b0c !important; }
 .cl-dividerLine { background: rgba(255,255,255,0.12) !important; }
 .cl-dividerText { color: #888580 !important; }
 .cl-socialButtonsBlockButton {
@@ -96,9 +88,7 @@ input, select, textarea { font-family: var(--font-body); }
   border: 1px solid rgba(255,255,255,0.12) !important;
   color: #f0ede8 !important;
 }
-.cl-socialButtonsBlockButton:hover {
-  background: #2a2d2f !important;
-}
+.cl-socialButtonsBlockButton:hover { background: #2a2d2f !important; }
 .cl-socialButtonsBlockButtonText { color: #f0ede8 !important; }
 .cl-alternativeMethodsBlockButton {
   background: #222527 !important;
@@ -119,13 +109,36 @@ input, select, textarea { font-family: var(--font-body); }
 .cl-navbarButton { color: #888580 !important; }
 .cl-navbarButton:hover { color: #f0ede8 !important; }
 .cl-pageScrollBox { background: #1a1d1f !important; }
+
+/* User button popover */
 .cl-userButtonPopoverCard {
   background: #1a1d1f !important;
   border: 1px solid rgba(255,255,255,0.12) !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6) !important;
 }
-.cl-userButtonPopoverActionButton { color: #f0ede8 !important; }
-.cl-userButtonPopoverActionButton:hover { background: #222527 !important; }
-.cl-userButtonPopoverFooter { background: #1a1d1f !important; }
+.cl-userButtonPopoverActionButton {
+  color: #f0ede8 !important;
+}
+.cl-userButtonPopoverActionButton:hover {
+  background: #222527 !important;
+  color: #f0ede8 !important;
+}
+.cl-userButtonPopoverActionButtonText {
+  color: #f0ede8 !important;
+}
+.cl-userButtonPopoverActionButtonIcon {
+  color: #888580 !important;
+}
+.cl-userButtonPopoverFooter {
+  background: #1a1d1f !important;
+  border-top: 1px solid rgba(255,255,255,0.08) !important;
+}
+.cl-userPreviewMainIdentifier {
+  color: #f0ede8 !important;
+}
+.cl-userPreviewSecondaryIdentifier {
+  color: #888580 !important;
+}
 
 @media (max-width: 768px) {
   .wrap { padding: 0 1.25rem; }
