@@ -1,24 +1,12 @@
-'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './page.module.css';
 import Demo from './components/Demo';
+import { auth } from '@clerk/nextjs/server';
 
-async function handleCheckout(priceId) {
-  const res = await fetch('/api/create-checkout', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ priceId }),
-  });
-  const data = await res.json();
-  if (data.url) {
-    window.location.href = data.url;
-  } else {
-    alert('Something went wrong. Please try again.');
-  }
-}
+export default async function Home() {
+  const { userId } = await auth();
 
-export default function Home() {
   return (
     <div className={styles.page}>
 
@@ -32,8 +20,14 @@ export default function Home() {
           <li><a href="#formats">Formats</a></li>
         </ul>
         <div className={styles.navActions}>
-          <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
-          <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
+          {userId ? (
+            <Link href="/dashboard" className={styles.navCta}>Go to Dashboard</Link>
+          ) : (
+            <>
+              <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
+              <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
+            </>
+          )}
         </div>
       </nav>
 
@@ -158,9 +152,7 @@ export default function Home() {
           {/* ADMIN TEST BUTTON — REMOVE BEFORE LAUNCH */}
           <div style={{marginBottom:'1.5rem', padding:'1rem', border:'1px dashed rgba(245,130,10,0.4)', borderRadius:'8px', background:'rgba(245,130,10,0.05)'}}>
             <div style={{fontSize:'0.7rem', fontFamily:'monospace', color:'#f5820a', marginBottom:'0.5rem', textTransform:'uppercase', letterSpacing:'0.1em'}}>⚠ Admin Test Only — Remove Before Launch</div>
-            <button onClick={() => handleCheckout('price_1TfPi6L0DPwWCCgGIJNkzKMW')} style={{background:'#f5820a', color:'#000', border:'none', borderRadius:'6px', padding:'0.5rem 1.2rem', fontWeight:'600', cursor:'pointer'}}>
-              Test Payment — £1.00
-            </button>
+            <TestButton />
           </div>
 
           <div className={styles.pricingGrid4}>
@@ -189,7 +181,7 @@ export default function Home() {
                 <li className={styles.highlight}>Email support</li>
                 <li>Single user</li>
               </ul>
-              <button onClick={() => handleCheckout('price_1Te924L0DPwWCCgGKMTFTYRP')} className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
+              <HobbyButton />
             </div>
 
             <div className={`${styles.priceCard} ${styles.featured}`}>
@@ -205,7 +197,7 @@ export default function Home() {
                 <li className={styles.highlight}>Priority email support</li>
                 <li>Max 30MB file size</li>
               </ul>
-              <button onClick={() => handleCheckout('price_1Te92mL0DPwWCCgGhp8DW77U')} className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
+              <ProButton />
             </div>
 
             <div className={styles.priceCard}>
@@ -220,7 +212,7 @@ export default function Home() {
                 <li className={styles.highlight}>API access</li>
                 <li className={styles.highlight}>Priority support &amp; onboarding</li>
               </ul>
-              <button onClick={() => handleCheckout('price_1Te955L0DPwWCCgGmFxM4C4H')} className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}}>Start Free Trial</button>
+              <StudioButton />
             </div>
 
           </div>
@@ -277,4 +269,18 @@ export default function Home() {
 
     </div>
   );
+}
+
+// Individual button components
+function HobbyButton() {
+  return <CheckoutButton priceId="price_1Te924L0DPwWCCgGKMTFTYRP" label="Start Free Trial" className="btnGhost" />;
+}
+function ProButton() {
+  return <CheckoutButton priceId="price_1Te92mL0DPwWCCgGhp8DW77U" label="Start Free Trial" className="btnPrimary" />;
+}
+function StudioButton() {
+  return <CheckoutButton priceId="price_1Te955L0DPwWCCgGmFxM4C4H" label="Start Free Trial" className="btnGhost" />;
+}
+function TestButton() {
+  return <CheckoutButton priceId="price_1TfPi6L0DPwWCCgGIJNkzKMW" label="Test Payment — £1.00" className="btnPrimary" />;
 }
