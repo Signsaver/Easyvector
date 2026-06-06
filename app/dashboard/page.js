@@ -1,12 +1,10 @@
 'use client';
 
 import { useUser, UserButton } from '@clerk/nextjs';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
-
-const FREE_TRACE_LIMIT = 1;
 
 export default function Dashboard() {
   const { user } = useUser();
@@ -17,15 +15,35 @@ export default function Dashboard() {
   const [processing, setProcessing] = useState(false);
   const [processLabel, setProcessLabel] = useState('');
   const [error, setError] = useState('');
-  const [tracesUsed, setTracesUsed] = useState(0);
   const [format, setFormat] = useState('svg');
   const [mode, setMode] = useState('test');
   const [colour, setColour] = useState('');
   const [dragover, setDragover] = useState(false);
+  const [credits, setCredits] = useState(null);
+  const [plan, setPlan] = useState('free');
+  const [loadingCredits, setLoadingCredits] = useState(true);
   const fileRef = useRef();
 
-  const freeTracesLeft = FREE_TRACE_LIMIT - tracesUsed;
-  const isFreePlan = true;
+  useEffect(() => {
+    async function fetchCredits() {
+      try {
+        const res = await fetch('/api/credits');
+        const data = await res.json();
+        if (data.credits !== undefined) {
+          setCredits(data.credits);
+          setPlan(data.plan || 'free');
+        }
+      } catch (err) {
+        console.error('Failed to fetch credits:', err);
+      } finally {
+        setLoadingCredits(false);
+      }
+    }
+    fetchCredits();
+  }, []);
+
+  const isFreePlan = plan === 'free';
+  const freeTracesLeft = credits ?? 0;
 
   function handleFile(f) {
     if (!f || !f.type.startsWith('image/')) return;
@@ -38,8 +56,8 @@ export default function Dashboard() {
 
   async function handleTrace() {
     if (!file || processing) return;
-    if (isFreePlan && freeTracesLeft <= 0) {
-      setError('You have used your free trace. Please upgrade to continue.');
+    if (freeTracesLeft <= 0) {
+      setError('You have no credits remaining. Please upgrade to continue.');
       return;
     }
 
@@ -81,7 +99,14 @@ export default function Dashboard() {
       const url = URL.createObjectURL(blob);
       setResult(blob);
       setResultUrl(url);
-      setTracesUsed(t => t + 1);
+
+      // Deduct credit from Supabase
+      const deductRes = await fetch('/api/credits', { method: 'POST' });
+      const deductData = await deductRes.json();
+      if (deductData.credits !== undefined) {
+        setCredits(deductData.credits);
+        setPlan(deductData.plan || 'free');
+      }
 
     } catch (err) {
       clearInterval(iv);
@@ -99,7 +124,7 @@ export default function Dashboard() {
         <Link href="/"><Image src="/logo.svg" alt="EasyVector.ai" width={220} height={42} priority /></Link>
         <div className={styles.navRight}>
           <div className={styles.planBadge}>
-            {isFreePlan ? `Free — ${freeTracesLeft} trace${freeTracesLeft !== 1 ? 's' : ''} left` : 'Pro Plan'}
+            {loadingCredits ? '...' : isFreePlan ? `Free — ${freeTracesLeft} trace${freeTracesLeft !== 1 ? 's' : ''} left` : `${plan} — ${freeTracesLeft} traces left`}
           </div>
           {isFreePlan && (
             <a href="/#pricing" className={styles.upgradeBtn}>Upgrade</a>
@@ -140,16 +165,16 @@ export default function Dashboard() {
         {isFreePlan && freeTracesLeft > 0 && (
           <div className={styles.freeBanner}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>You have <strong>1 free trace</strong> — try it now, no credit card needed!</span>
+            <span>You have <strong>{freeTracesLeft} free trace{freeTracesLeft !== 1 ? 's' : ''}</strong> — try it now, no credit card needed!</span>
           </div>
         )}
 
         {/* UPGRADE BANNER */}
-        {isFreePlan && freeTracesLeft <= 0 && (
+        {freeTracesLeft <= 0 && (
           <div className={styles.upgradeBanner}>
             <div>
-              <strong>Free trace used!</strong>
-              <p>Upgrade to Pro for 500 traces/month and all output formats.</p>
+              <strong>No credits remaining!</strong>
+              <p>Upgrade to get more traces and all output formats.</p>
             </div>
             <a href="/#pricing" className={styles.upgradeBannerBtn}>View Plans →</a>
           </div>
@@ -184,7 +209,7 @@ export default function Dashboard() {
           <button
             className={styles.traceBtn}
             onClick={handleTrace}
-            disabled={!file || processing || (isFreePlan && freeTracesLeft <= 0)}
+            disabled={!file || processing || freeTracesLeft <= 0}
           >
             {processing ? 'Tracing…' : 'Trace Image'}
           </button>
