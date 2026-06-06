@@ -19,6 +19,7 @@ export default async function Home() {
           <li><a href="#features">Features</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#formats">Formats</a></li>
+          <li><Link href="/how-it-works">How It Works</Link></li>
         </ul>
         <div className={styles.navActions}>
           {userId ? (
@@ -35,16 +36,16 @@ export default async function Home() {
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroLeft}>
-          <div className={styles.eyebrow}>Professional Vectorization</div>
-          <h1>Bitmap to <span>Vector</span><br/>in Seconds</h1>
-          <p className={styles.heroSub}>Purpose-built for sign makers, exhibition stand builders, print shops and promo gift suppliers! Upload those client supplied PNG&apos;s and JPEG&apos;s and download ready to use vectors instantly!</p>
+          <div className={styles.eyebrow}>Built for Sign Makers &amp; Print Professionals</div>
+          <h1>Client sent you an <span>AI logo</span><br/>again?</h1>
+          <p className={styles.heroSub}>AI-generated images look great — until your client sends one as a PNG and expects it cut, printed or routed by end of day. No nodes. No paths. Just pixels. EasyVector converts it to a clean, production-ready vector in seconds — no redrawing in Illustrator, no wasted hours.</p>
           <div className={styles.heroActions}>
             <Link href="/sign-up" className={styles.btnPrimary}>Try Free — Register Now</Link>
             <a href="#pricing" className={styles.btnGhost}>View Pricing</a>
           </div>
           <div className={styles.heroBadge}>
-            <span>🎁</span>
-            <span>1 free trace on registration — no credit card required</span>
+            <span>⚡</span>
+            <span>Stop redrawing AI logos — convert to vector in seconds</span>
           </div>
         </div>
         <div className={styles.heroRight}>
@@ -81,9 +82,9 @@ export default async function Home() {
           <div className={styles.sectionTitle}>TOOLS BUILT FOR THE TRADE</div>
           <div className={styles.featuresGrid}>
             {[
+              { title: 'Kills the AI logo problem', text: 'Clients love AI-generated artwork — until it needs to be produced. EasyVector turns unprintable, unroutable PNGs into clean vectors your software can actually use.' },
               { title: 'Clean node output', text: 'Smooth Bezier curves and minimal anchor points — exactly what Flexi, CorelDRAW, and Illustrator need for clean weeding and cutting.' },
               { title: 'Colour separation', text: 'Automatically separate artwork into individual colour layers, ready for spot colour printing, multi-colour vinyl builds, and screen printing.' },
-              { title: 'Batch processing', text: 'Drop in a folder of client logos, get back production-ready vectors. Built for busy sign shops, print studios and exhibition suppliers.' },
               { title: 'DXF for routing & plasma', text: 'Export DXF optimised for CNC routers, plasma cutters, and waterjet machines. Closed paths, correct winding order, no stray nodes.' },
               { title: 'Edge smoothing control', text: 'Adjust edge smoothing vs. detail retention. Perfect for promo gifts, embroidery and screen printing where clean paths are critical.' },
               { title: 'REST API for studios', text: 'Integrate EasyVector into your own ordering portal or customer-facing artwork upload flow. Full documentation and webhook support.' },
@@ -257,7 +258,7 @@ export default async function Home() {
         <ul className={styles.footerLinks}>
           <li><a href="#">Privacy</a></li>
           <li><a href="#">Terms</a></li>
-          <li><a href="#">API Docs</a></li>
+          <li><Link href="/how-it-works">How It Works</Link></li>
           <li><a href="#">Support</a></li>
         </ul>
       </footer>
