@@ -83,7 +83,7 @@ export default async function Home() {
           <div className={styles.featuresGrid}>
             {[
               { title: 'Kills the AI logo problem', text: 'Clients love AI-generated artwork — until it needs to be produced. EasyVector turns unprintable, unroutable PNGs into clean vectors your software can actually use.' },
-              { title: 'Clean node output', text: 'Smooth Bezier curves and minimal anchor points — exactly what Flexi, CorelDRAW, and Illustrator need for clean weeding and cutting.' },
+              { title: 'Clean node output', text: 'Smooth Bezier curves and minimal anchor points — exactly what\'s required for easy cutting, weeding, high quality large format printing, CNC routing and laser cutting.' },
               { title: 'Colour separation', text: 'Automatically separate artwork into individual colour layers, ready for spot colour printing, multi-colour vinyl builds, and screen printing.' },
               { title: 'DXF for routing & plasma', text: 'Export DXF optimised for CNC routers, plasma cutters, and waterjet machines. Closed paths, correct winding order, no stray nodes.' },
               { title: 'Edge smoothing control', text: 'Adjust edge smoothing vs. detail retention. Perfect for promo gifts, embroidery and screen printing where clean paths are critical.' },
