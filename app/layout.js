@@ -7,10 +7,12 @@ const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
   variable: '--font-bebas',
 });
+
 const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
 });
+
 const dmMono = DM_Mono({
   weight: ['400', '500'],
   subsets: ['latin'],
@@ -85,6 +87,11 @@ export const metadata = {
   },
   alternates: {
     canonical: 'https://easyvector.ai',
+  },
+  icons: {
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
