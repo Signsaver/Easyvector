@@ -28,7 +28,7 @@ const PROFESSION_MODES = [
   {
     id: 'largeformat',
     label: 'Large format',
-    icon: '/large_format_print_icon.png',
+    icon: '/Large_format_print_icon.png',
     defaultFormat: 'pdf',
     apiMode: 'production',
     badge: 'Large format — PDF / EPS',
