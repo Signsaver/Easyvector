@@ -8,6 +8,73 @@ import styles from './page.module.css';
 
 const MAX_MEGAPIXELS = 2.8;
 
+const PROFESSION_MODES = [
+  {
+    id: 'signmaker',
+    label: 'Sign maker',
+    icon: '/icons/signmaker_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'Sign maker — SVG / DXF / EPS',
+  },
+  {
+    id: 'exhibition',
+    label: 'Exhibition build',
+    icon: '/icons/exhibition_stand_build_icon.png',
+    defaultFormat: 'pdf',
+    apiMode: 'production',
+    badge: 'Exhibition build — PDF / EPS',
+  },
+  {
+    id: 'largeformat',
+    label: 'Large format',
+    icon: '/icons/large_format_print_icon.png',
+    defaultFormat: 'pdf',
+    apiMode: 'production',
+    badge: 'Large format — PDF / EPS',
+  },
+  {
+    id: 'cnc',
+    label: 'CNC / laser / plasma',
+    icon: '/icons/cnc_laser_icon.png',
+    defaultFormat: 'dxf',
+    apiMode: 'production',
+    badge: 'CNC / Laser / Plasma / Waterjet — DXF',
+  },
+  {
+    id: 'embroidery',
+    label: 'Embroidery & clothing',
+    icon: '/icons/embroidery_clothing_icon.png',
+    defaultFormat: 'eps',
+    apiMode: 'production',
+    badge: 'Embroidery & clothing — EPS',
+  },
+  {
+    id: 'promo',
+    label: 'Promo gifts',
+    icon: '/icons/promo_gifts_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'Promo gifts — SVG / PDF',
+  },
+  {
+    id: 'screenprint',
+    label: 'Screen print',
+    icon: '/icons/screen_printing_icon.png',
+    defaultFormat: 'eps',
+    apiMode: 'production',
+    badge: 'Screen print — EPS / PDF',
+  },
+  {
+    id: 'general',
+    label: 'General / designer',
+    icon: '/icons/graphic_design_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'General / designer — SVG',
+  },
+];
+
 async function resizeImageIfNeeded(file) {
   return new Promise((resolve) => {
     const img = document.createElement('img');
@@ -47,13 +114,14 @@ export default function Dashboard() {
   const [processLabel, setProcessLabel] = useState('');
   const [error, setError] = useState('');
   const [format, setFormat] = useState('svg');
-  const [mode, setMode] = useState('test');
+  const [mode, setMode] = useState('production');
   const [colour, setColour] = useState('');
   const [dragover, setDragover] = useState(false);
   const [credits, setCredits] = useState(null);
   const [plan, setPlan] = useState('free');
   const [loadingCredits, setLoadingCredits] = useState(true);
   const [resized, setResized] = useState(false);
+  const [professionMode, setProfessionMode] = useState(PROFESSION_MODES[0]);
   const fileRef = useRef();
 
   useEffect(() => {
@@ -76,6 +144,12 @@ export default function Dashboard() {
 
   const isFreePlan = plan === 'free';
   const freeTracesLeft = credits ?? 0;
+
+  function selectProfessionMode(pm) {
+    setProfessionMode(pm);
+    setFormat(pm.defaultFormat);
+    setMode(pm.apiMode);
+  }
 
   async function handleFile(f) {
     if (!f || !f.type.startsWith('image/')) return;
@@ -201,7 +275,7 @@ export default function Dashboard() {
         {/* WELCOME */}
         <div className={styles.welcome}>
           <h1>Welcome back{user?.firstName ? `, ${user.firstName}` : ''}!</h1>
-          <p>Upload a bitmap image and download a perfect vector in seconds.</p>
+          <p>Select your trade, upload a bitmap, and download a perfect vector in seconds.</p>
         </div>
 
         {/* FREE TRIAL BANNER */}
@@ -223,6 +297,26 @@ export default function Dashboard() {
           </div>
         )}
 
+        {/* PROFESSION MODE SELECTOR */}
+        <div className={styles.modeSection}>
+          <p className={styles.modeLabel}>Select your trade</p>
+          <div className={styles.modeGrid}>
+            {PROFESSION_MODES.map((pm) => (
+              <button
+                key={pm.id}
+                className={`${styles.modeCard} ${professionMode.id === pm.id ? styles.modeCardActive : ''}`}
+                onClick={() => selectProfessionMode(pm)}
+              >
+                <img src={pm.icon} alt={pm.label} className={styles.modeIcon} />
+                <span className={styles.modeName}>{pm.label}</span>
+              </button>
+            ))}
+          </div>
+          <div className={styles.modeBadge}>
+            {professionMode.badge}
+          </div>
+        </div>
+
         {/* CONTROLS */}
         <div className={styles.controls}>
           <div className={styles.controlGroup}>
@@ -232,13 +326,6 @@ export default function Dashboard() {
               <option value="dxf">DXF — CNC / Router / Laser</option>
               <option value="eps">EPS — Print &amp; Embroidery</option>
               <option value="pdf">PDF — Universal</option>
-            </select>
-          </div>
-          <div className={styles.controlGroup}>
-            <label>Processing Mode</label>
-            <select value={mode} onChange={e => setMode(e.target.value)}>
-              <option value="test">Test (Free — No credits)</option>
-              <option value="production">Production (1 credit)</option>
             </select>
           </div>
           <div className={styles.controlGroup}>
