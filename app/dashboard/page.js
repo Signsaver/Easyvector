@@ -1,3 +1,69 @@
+const PROFESSION_MODES = [
+  {
+    id: 'signmaker',
+    label: 'Sign maker',
+    icon: '/signmaker_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'Sign maker — SVG / DXF / EPS',
+  },
+  {
+    id: 'exhibition',
+    label: 'Exhibition build',
+    icon: '/exhibition_stand_build_icon.png',
+    defaultFormat: 'pdf',
+    apiMode: 'production',
+    badge: 'Exhibition build — PDF / EPS',
+  },
+  {
+    id: 'largeformat',
+    label: 'Large format',
+    icon: '/large_format_print_icon.png',
+    defaultFormat: 'pdf',
+    apiMode: 'production',
+    badge: 'Large format — PDF / EPS',
+  },
+  {
+    id: 'cnc',
+    label: 'CNC / laser / plasma',
+    icon: '/cnc_laser_icon.png',
+    defaultFormat: 'dxf',
+    apiMode: 'production',
+    badge: 'CNC / Laser / Plasma / Waterjet — DXF',
+  },
+  {
+    id: 'embroidery',
+    label: 'Embroidery & clothing',
+    icon: '/embroidery_clothing_icon.png',
+    defaultFormat: 'eps',
+    apiMode: 'production',
+    badge: 'Embroidery & clothing — EPS',
+  },
+  {
+    id: 'promo',
+    label: 'Promo gifts',
+    icon: '/promo_gifts_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'Promo gifts — SVG / PDF',
+  },
+  {
+    id: 'screenprint',
+    label: 'Screen print',
+    icon: '/screen_printing_icon.png',
+    defaultFormat: 'eps',
+    apiMode: 'production',
+    badge: 'Screen print — EPS / PDF',
+  },
+  {
+    id: 'general',
+    label: 'General / designer',
+    icon: '/graphic_design_icon.png',
+    defaultFormat: 'svg',
+    apiMode: 'production',
+    badge: 'General / designer — SVG',
+  },
+];
 'use client';
 
 import { useUser, UserButton } from '@clerk/nextjs';
