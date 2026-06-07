@@ -1,3 +1,13 @@
+'use client';
+
+import { useUser, UserButton } from '@clerk/nextjs';
+import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import styles from './page.module.css';
+
+const MAX_MEGAPIXELS = 2.8;
+
 const PROFESSION_MODES = [
   {
     id: 'signmaker',
@@ -59,82 +69,6 @@ const PROFESSION_MODES = [
     id: 'general',
     label: 'General / designer',
     icon: '/graphic_design_icon.png',
-    defaultFormat: 'svg',
-    apiMode: 'production',
-    badge: 'General / designer — SVG',
-  },
-];
-'use client';
-
-import { useUser, UserButton } from '@clerk/nextjs';
-import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './page.module.css';
-
-const MAX_MEGAPIXELS = 2.8;
-
-const PROFESSION_MODES = [
-  {
-    id: 'signmaker',
-    label: 'Sign maker',
-    icon: '/icons/signmaker_icon.png',
-    defaultFormat: 'svg',
-    apiMode: 'production',
-    badge: 'Sign maker — SVG / DXF / EPS',
-  },
-  {
-    id: 'exhibition',
-    label: 'Exhibition build',
-    icon: '/icons/exhibition_stand_build_icon.png',
-    defaultFormat: 'pdf',
-    apiMode: 'production',
-    badge: 'Exhibition build — PDF / EPS',
-  },
-  {
-    id: 'largeformat',
-    label: 'Large format',
-    icon: '/icons/large_format_print_icon.png',
-    defaultFormat: 'pdf',
-    apiMode: 'production',
-    badge: 'Large format — PDF / EPS',
-  },
-  {
-    id: 'cnc',
-    label: 'CNC / laser / plasma',
-    icon: '/icons/cnc_laser_icon.png',
-    defaultFormat: 'dxf',
-    apiMode: 'production',
-    badge: 'CNC / Laser / Plasma / Waterjet — DXF',
-  },
-  {
-    id: 'embroidery',
-    label: 'Embroidery & clothing',
-    icon: '/icons/embroidery_clothing_icon.png',
-    defaultFormat: 'eps',
-    apiMode: 'production',
-    badge: 'Embroidery & clothing — EPS',
-  },
-  {
-    id: 'promo',
-    label: 'Promo gifts',
-    icon: '/icons/promo_gifts_icon.png',
-    defaultFormat: 'svg',
-    apiMode: 'production',
-    badge: 'Promo gifts — SVG / PDF',
-  },
-  {
-    id: 'screenprint',
-    label: 'Screen print',
-    icon: '/icons/screen_printing_icon.png',
-    defaultFormat: 'eps',
-    apiMode: 'production',
-    badge: 'Screen print — EPS / PDF',
-  },
-  {
-    id: 'general',
-    label: 'General / designer',
-    icon: '/icons/graphic_design_icon.png',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'General / designer — SVG',
