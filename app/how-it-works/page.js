@@ -193,7 +193,7 @@ export default function HowItWorksPage() {
             ].map((a, i) => (
               <div key={i} className={styles.audienceCard}>
                 <div className={styles.audienceIcon}>
-                  <img src={a.icon} alt={a.title} style={{width:'52px', height:'52px', objectFit:'contain', filter:'brightness(0) invert(1)', opacity:0.8}} />
+                  <img src={a.icon} alt={a.title} style={{width:'52px', height:'52px', objectFit:'contain', opacity:0.85}} />
                 </div>
                 <h3>{a.title}</h3>
                 <p>{a.body}</p>
