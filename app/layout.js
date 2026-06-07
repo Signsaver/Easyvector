@@ -101,7 +101,7 @@ export default function RootLayout({ children }) {
         <body>
           {/* Google Analytics 4 */}
           <Script
-            src="https://www.googletagmanager.com/gtag/js?id=G-BPWNMP5RKM"
+            src="https://www.googletagmanager.com/gtag/js?id=G-BPVNMP5RKM"
             strategy="afterInteractive"
           />
           <Script id="ga4-init" strategy="afterInteractive">
