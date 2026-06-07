@@ -1,5 +1,6 @@
 import { ClerkProvider } from '@clerk/nextjs';
 import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 
 const bebasNeue = Bebas_Neue({
@@ -7,12 +8,10 @@ const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
   variable: '--font-bebas',
 });
-
 const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
 });
-
 const dmMono = DM_Mono({
   weight: ['400', '500'],
   subsets: ['latin'],
@@ -99,7 +98,22 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable} ${dmMono.variable}`}>
-        <body>{children}</body>
+        <body>
+          {/* Google Analytics 4 */}
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-BPWNMP5RKM"
+            strategy="afterInteractive"
+          />
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BPWNMP5RKM');
+            `}
+          </Script>
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
