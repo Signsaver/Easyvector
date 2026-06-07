@@ -184,12 +184,12 @@ export default function HowItWorksPage() {
           <div className={styles.sectionTitle}>BUILT FOR THE TRADE</div>
           <div className={styles.audienceGrid}>
             {[
-              { icon: '🪧', title: 'Sign Makers', body: 'Convert client-supplied PNGs and AI logos to clean vectors for vinyl cutting, routing, and large format printing — without redrawing anything.' },
-              { icon: '🖨️', title: 'Print Shops', body: 'Stop turning away jobs because artwork is low-res or bitmap-only. EasyVector gets files print-ready in seconds.' },
-              { icon: '⚙️', title: 'CNC & Fabrication', body: 'Get clean DXF files ready for your router, plasma cutter, or laser. Closed paths, correct winding order, no stray nodes.' },
-              { icon: '🎁', title: 'Promo & Gifts', body: 'Prepare artwork for embroidery digitising, engraving, and promotional product decoration from any source image.' },
-              { icon: '🏗️', title: 'Exhibition Builders', body: 'Convert client brand assets to scalable vectors for large-format graphics, fabricated signage, and display systems.' },
-              { icon: '💻', title: 'Studios & Agencies', body: 'Use our API to integrate vectorization directly into your artwork upload portal. Automate the whole workflow.' },
+              { icon: '/signmaker_icon.png', title: 'Sign Makers', body: 'Convert client-supplied PNGs and AI logos to clean vectors for vinyl cutting, routing, and large format printing — without redrawing anything.' },
+{ icon: '/Large_format_print_icon.png', title: 'Large Format', body: 'Stop turning away jobs because artwork is low-res or bitmap-only. EasyVector gets files print-ready in seconds.' },
+{ icon: '/cnc_laser_icon.png', title: 'CNC & Fabrication', body: 'Get clean DXF files ready for your router, plasma cutter, or laser. Closed paths, correct winding order, no stray nodes.' },
+{ icon: '/promo_gifts_icon.png', title: 'Promo & Gifts', body: 'Prepare artwork for embroidery digitising, engraving, and promotional product decoration from any source image.' },
+{ icon: '/exhibition_stand_build_icon.png', title: 'Exhibition Builders', body: 'Convert client brand assets to scalable vectors for large-format graphics, fabricated signage, and display systems.' },
+{ icon: '/graphic_design_icon.png', title: 'Studios & Agencies', body: 'Use our API to integrate vectorization directly into your artwork upload portal. Automate the whole workflow.' },
             ].map((a, i) => (
               <div key={i} className={styles.audienceCard}>
                 <div className={styles.audienceIcon}>{a.icon}</div>
