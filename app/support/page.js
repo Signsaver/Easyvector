@@ -76,7 +76,7 @@ export default function SupportPage() {
             },
             {
               q: 'I have a question not answered here — what should I do?',
-              a: 'Email us at hello@easyvector.ai and we\'ll be happy to help.'
+              a: 'Email us at support@easyvector.ai and we\'ll be happy to help.'
             },
           ].map((faq, i) => (
             <div key={i} style={{background:'var(--surface)', border:'1px solid var(--border)', borderRadius:'8px', padding:'1.5rem'}}>
