@@ -28,8 +28,8 @@ export default function SupportPage() {
             <div style={{fontFamily:'var(--font-display)', fontSize:'1.4rem', letterSpacing:'0.05em', marginBottom:'0.4rem'}}>GET IN TOUCH</div>
             <p style={{color:'var(--muted)', fontSize:'0.9rem'}}>Email us and we&apos;ll get back to you within 1 business day.</p>
           </div>
-          <a href="mailto:hello@easyvector.ai" style={{background:'var(--accent)', color:'#000', padding:'0.65rem 1.75rem', borderRadius:'6px', fontWeight:'600', fontSize:'0.9rem', whiteSpace:'nowrap', textDecoration:'none'}}>
-            hello@easyvector.ai
+          <a href="mailto:support@easyvector.ai" style={{background:'var(--accent)', color:'#000', padding:'0.65rem 1.75rem', borderRadius:'6px', fontWeight:'600', fontSize:'0.9rem', whiteSpace:'nowrap', textDecoration:'none'}}>
+            support@easyvector.ai
           </a>
         </div>
 
