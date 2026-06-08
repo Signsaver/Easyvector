@@ -29,7 +29,7 @@ export default function PrivacyPage() {
             <p>EasyVector.ai is operated by <strong>Signsaver Ltd</strong>, a company registered in England and Wales.</p>
             <p style={{marginTop:'0.75rem'}}><strong>Registered address:</strong> 20-22 Wenlock Road, London, England, N1 7GU</p>
             <p style={{marginTop:'0.75rem'}}><strong>Email:</strong> hello@easyvector.ai</p>
-            <p style={{marginTop:'0.75rem'}}><strong>ICO Registration Number:</strong> [ICO-REGISTRATION-NUMBER]</p>
+            <p style={{marginTop:'0.75rem'}}><strong>ICO Registration Number:</strong> [ZC168026]</p>
           </section>
 
           <section style={{marginBottom:'2.5rem'}}>
