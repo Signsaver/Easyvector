@@ -31,7 +31,8 @@ export async function POST(request) {
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
       mode: isSubscription ? 'subscription' : 'payment',
-success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://easyvector.ai'}/success?session_id={CHECKOUT_SESSION_ID}`,      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://easyvector.ai'}/#pricing`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://easyvector.ai'}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://easyvector.ai'}/#pricing`,
       automatic_tax: { enabled: true },
       metadata: {
         userId,
