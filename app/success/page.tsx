@@ -9,7 +9,9 @@ export default function SuccessPage() {
   useEffect(() => {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        send_to: 'AW-861109733/send_to: 'AW-861109733/MkheCPbY-rocEOX7zZoD',
+        send_to: 'AW-861109733/MkheCPbY-rocEOX7zZoD',
+        currency: 'GBP',
+        transaction_id: new URLSearchParams(window.location.search).get('session_id') ?? '',
       })
     }
 
