@@ -18,15 +18,19 @@ export async function POST(request) {
     if (!userId) {
       return Response.json({ error: 'Unauthorised' }, { status: 401 });
     }
+
     const { priceId } = await request.json();
     if (!priceId) {
       return Response.json({ error: 'Price ID required' }, { status: 400 });
     }
+
     const priceInfo = PRICE_CREDITS[priceId];
     if (!priceInfo) {
       return Response.json({ error: 'Invalid price ID' }, { status: 400 });
     }
+
     const isSubscription = priceInfo.type === 'subscription';
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [{ price: priceId, quantity: 1 }],
@@ -41,6 +45,7 @@ export async function POST(request) {
         plan: priceInfo.plan || 'payg',
       },
     });
+
     return Response.json({ url: session.url });
   } catch (err) {
     console.error('Checkout error:', err);
