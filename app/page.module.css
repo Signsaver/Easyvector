@@ -210,9 +210,9 @@
 .planPeriod { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.5rem; }
 .planFeatures { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .planFeatures li { font-size: 0.82rem; color: var(--muted); padding-left: 1rem; position: relative; }
-.planFeatures li::before { content: 'â€“'; position: absolute; left: 0; color: var(--muted2); }
+.planFeatures li::before { content: '–'; position: absolute; left: 0; color: var(--muted2); }
 .highlight { color: var(--text) !important; }
-.highlight::before { content: 'âœ“' !important; color: var(--accent) !important; }
+.highlight::before { content: '✓' !important; color: var(--accent) !important; }
 .pricingAgency {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 1.5rem 2rem;
