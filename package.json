@@ -8,7 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^6.0.0",
+    "dependencies": {
+  "resend": "^4.0.0",
+  ...other existing entries
+}"@clerk/nextjs": "^6.0.0",
     "@supabase/supabase-js": "^2.45.0",
     "next": "^15.0.0",
     "react": "^18.0.0",
