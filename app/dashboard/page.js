@@ -12,7 +12,7 @@ const PROFESSION_MODES = [
   {
     id: 'signmaker',
     label: 'Sign maker',
-    photo: '/Easy_Vector_Sign_making.jpg',
+    photo: '/Easy_Vector_Sign_making.png',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'Sign maker — SVG / DXF / EPS',
@@ -20,7 +20,7 @@ const PROFESSION_MODES = [
   {
     id: 'exhibition',
     label: 'Exhibition build',
-    photo: '/Easy_Vector_Exhibition_booth_builder.jpg',
+    photo: '/Easy_Vector_Exhibition_booth_builder.png',
     defaultFormat: 'pdf',
     apiMode: 'production',
     badge: 'Exhibition build — PDF / EPS',
@@ -28,7 +28,7 @@ const PROFESSION_MODES = [
   {
     id: 'largeformat',
     label: 'Large format',
-    photo: '/Easy_Vector_Large_format_printing.jpg',
+    photo: '/Easy_Vector_Large_format_printing.png',
     defaultFormat: 'pdf',
     apiMode: 'production',
     badge: 'Large format — PDF / EPS',
@@ -36,7 +36,7 @@ const PROFESSION_MODES = [
   {
     id: 'cnc',
     label: 'CNC / laser / plasma',
-    photo: '/Easy_Vector_CNC_Routing.jpg',
+    photo: '/Easy_Vector_CNC_Routing.png',
     defaultFormat: 'dxf',
     apiMode: 'production',
     badge: 'CNC / Laser / Plasma / Waterjet — DXF',
@@ -44,7 +44,7 @@ const PROFESSION_MODES = [
   {
     id: 'embroidery',
     label: 'Embroidery & clothing',
-    photo: '/Easy_Vector_Embroidery.jpg',
+    photo: '/Easy_Vector_Embroidery.png',
     defaultFormat: 'eps',
     apiMode: 'production',
     badge: 'Embroidery & clothing — EPS',
@@ -52,7 +52,7 @@ const PROFESSION_MODES = [
   {
     id: 'promo',
     label: 'Promo gifts',
-    photo: '/Easy_Vector_Promo_gifts.jpg',
+    photo: '/Easy_Vector_Promo_gifts.png',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'Promo gifts — SVG / PDF',
@@ -60,7 +60,7 @@ const PROFESSION_MODES = [
   {
     id: 'screenprint',
     label: 'Screen print',
-    photo: '/Easy_Vector_Screen_printing.jpg',
+    photo: '/Easy_Vector_Screen_printing.png',
     defaultFormat: 'eps',
     apiMode: 'production',
     badge: 'Screen print — EPS / PDF',
@@ -68,7 +68,7 @@ const PROFESSION_MODES = [
   {
     id: 'general',
     label: 'General / designer',
-    photo: '/Easy_Vector_graphic_design.jpg',
+    photo: '/Easy_Vector_graphic_design.png',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'General / designer — SVG',
