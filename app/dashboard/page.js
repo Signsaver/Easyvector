@@ -12,7 +12,7 @@ const PROFESSION_MODES = [
   {
     id: 'signmaker',
     label: 'Sign maker',
-    icon: '/signmaker_icon.png',
+    photo: '/Easy_Vector_Sign_making.jpg',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'Sign maker — SVG / DXF / EPS',
@@ -20,7 +20,7 @@ const PROFESSION_MODES = [
   {
     id: 'exhibition',
     label: 'Exhibition build',
-    icon: '/exhibition_stand_build_icon.png',
+    photo: '/Easy_Vector_Exhibition_booth_builder.jpg',
     defaultFormat: 'pdf',
     apiMode: 'production',
     badge: 'Exhibition build — PDF / EPS',
@@ -28,7 +28,7 @@ const PROFESSION_MODES = [
   {
     id: 'largeformat',
     label: 'Large format',
-    icon: '/Large_format_print_icon.png',
+    photo: '/Easy_Vector_Large_format_printing.jpg',
     defaultFormat: 'pdf',
     apiMode: 'production',
     badge: 'Large format — PDF / EPS',
@@ -36,7 +36,7 @@ const PROFESSION_MODES = [
   {
     id: 'cnc',
     label: 'CNC / laser / plasma',
-    icon: '/cnc_laser_icon.png',
+    photo: '/Easy_Vector_CNC_Routing.jpg',
     defaultFormat: 'dxf',
     apiMode: 'production',
     badge: 'CNC / Laser / Plasma / Waterjet — DXF',
@@ -44,7 +44,7 @@ const PROFESSION_MODES = [
   {
     id: 'embroidery',
     label: 'Embroidery & clothing',
-    icon: '/embroidery_clothing_icon.png',
+    photo: '/Easy_Vector_Embroidery.jpg',
     defaultFormat: 'eps',
     apiMode: 'production',
     badge: 'Embroidery & clothing — EPS',
@@ -52,7 +52,7 @@ const PROFESSION_MODES = [
   {
     id: 'promo',
     label: 'Promo gifts',
-    icon: '/promo_gifts_icon.png',
+    photo: '/Easy_Vector_Promo_gifts.jpg',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'Promo gifts — SVG / PDF',
@@ -60,7 +60,7 @@ const PROFESSION_MODES = [
   {
     id: 'screenprint',
     label: 'Screen print',
-    icon: '/screen_printing_icon.png',
+    photo: '/Easy_Vector_Screen_printing.jpg',
     defaultFormat: 'eps',
     apiMode: 'production',
     badge: 'Screen print — EPS / PDF',
@@ -68,7 +68,7 @@ const PROFESSION_MODES = [
   {
     id: 'general',
     label: 'General / designer',
-    icon: '/graphic_design_icon.png',
+    photo: '/Easy_Vector_graphic_design.jpg',
     defaultFormat: 'svg',
     apiMode: 'production',
     badge: 'General / designer — SVG',
@@ -320,8 +320,9 @@ export default function Dashboard() {
                 key={pm.id}
                 className={`${styles.modeCard} ${professionMode.id === pm.id ? styles.modeCardActive : ''}`}
                 onClick={() => selectProfessionMode(pm)}
+                style={{ backgroundImage: `url(${pm.photo})` }}
               >
-                <img src={pm.icon} alt={pm.label} className={styles.modeIcon} />
+                <span className={styles.modeOverlay}></span>
                 <span className={styles.modeName}>{pm.label}</span>
               </button>
             ))}
