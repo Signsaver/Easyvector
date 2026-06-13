@@ -95,7 +95,7 @@ export default function PrivacyPage() {
               <li>Data portability</li>
               <li>Lodge a complaint with the ICO at <a href="https://ico.org.uk" style={{color:'var(--accent)'}}>ico.org.uk</a></li>
             </ul>
-            <p style={{marginTop:'0.75rem'}}>To exercise any of these rights, email us at <a href="mailto:hello@easyvector.ai" style={{color:'var(--accent)'}}>hello@easyvector.ai</a>.</p>
+            <p style={{marginTop:'0.75rem'}}>To exercise any of these rights, email us at <a href="mailto:support@easyvector.ai" style={{color:'var(--accent)'}}>hello@easyvector.ai</a>.</p>
           </section>
 
           <section style={{marginBottom:'2.5rem'}}>
