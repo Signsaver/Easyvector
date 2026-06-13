@@ -22,7 +22,7 @@ export const metadata = {
     default: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
     template: '%s — EasyVector.ai',
   },
-  description: 'Free AI image to vector converter for sign makers and print shops. Convert logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds — no credit card required.',
+  description: 'Free AI image to vector converter for sign makers and print shops. Convert logos to clean SVG, EPS, DXF and PDF vectors in seconds — no credit card.',
   keywords: [
     'bitmap to vector',
     'image to vector converter',
