@@ -210,9 +210,9 @@
 .planPeriod { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.5rem; }
 .planFeatures { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .planFeatures li { font-size: 0.82rem; color: var(--muted); padding-left: 1rem; position: relative; }
-.planFeatures li::before { content: 'â€“'; position: absolute; left: 0; color: var(--muted2); }
+.planFeatures li::before { content: '\2013'; position: absolute; left: 0; color: var(--muted2); }
 .highlight { color: var(--text) !important; }
-.highlight::before { content: 'âœ“' !important; color: var(--accent) !important; }
+.highlight::before { content: '\2713' !important; color: var(--accent) !important; }
 .pricingAgency {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 1.5rem 2rem;
@@ -289,4 +289,21 @@
   .formatsGrid { grid-template-columns: repeat(2, 1fr); }
   .pricingGrid4 { grid-template-columns: 1fr; }
   .section { padding: 3rem 1.25rem; }
+  .btnPrimary, .btnGhost, .heroCardBtn {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .heroActions { flex-direction: column; }
+  .heroActions a { width: 100%; box-sizing: border-box; }
+  .pricingAgency {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pricingAgency a {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .priceBadge { white-space: normal; text-align: center; }
 }
