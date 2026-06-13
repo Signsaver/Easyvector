@@ -44,6 +44,8 @@ export default function Home() {
         </div>
       </nav>
 
+      <main>
+
       {/* HERO */}
       <section className={styles.hero}>
         <div className={styles.heroLeft}>
@@ -262,6 +264,8 @@ export default function Home() {
           <Link href="/sign-up" className={styles.btnPrimary}>Register Free — Get Your First Trace</Link>
         </div>
       </section>
+
+      </main>
 
       {/* FOOTER */}
       <footer className={styles.footer}>
