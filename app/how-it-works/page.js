@@ -192,11 +192,13 @@ export default function HowItWorksPage() {
               { icon: '/graphic_design_icon.png', title: 'Studios & Agencies', body: 'Use our API to integrate vectorization directly into your artwork upload portal. Automate the whole workflow.' },
             ].map((a, i) => (
               <div key={i} className={styles.audienceCard}>
-                <div className={styles.audienceIcon}>
-                  <img src={a.icon} alt={a.title} style={{width:'52px', height:'52px', objectFit:'contain', opacity:0.85}} />
+                <div className={styles.audienceImageWrap}>
+                  <img src={a.icon} alt={a.title} className={styles.audienceImage} />
                 </div>
-                <h3>{a.title}</h3>
-                <p>{a.body}</p>
+                <div className={styles.audienceBody}>
+                  <h3>{a.title}</h3>
+                  <p>{a.body}</p>
+                </div>
               </div>
             ))}
           </div>
