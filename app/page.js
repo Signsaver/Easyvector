@@ -93,7 +93,7 @@ export default async function Home() {
       <section className={styles.section} id="features">
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>Why professionals choose us</div>
-          <div className={styles.sectionTitle}>TOOLS BUILT FOR THE TRADE</div>
+          <h2 className={styles.sectionTitle}>Tools built for the trade — vector conversion for sign makers</h2>
           <div className={styles.featuresGrid}>
             {[
               { title: 'Kills the AI logo problem', text: 'Clients love AI-generated artwork — until it needs to be produced. EasyVector turns unprintable, unroutable PNGs into clean vectors your software can actually use.' },
@@ -104,7 +104,7 @@ export default async function Home() {
               { title: 'REST API for studios', text: 'Integrate EasyVector into your own ordering portal or customer-facing artwork upload flow. Full documentation and webhook support.' },
             ].map((f, i) => (
               <div key={i} className={styles.featureCard}>
-                <div className={styles.featureTitle}>{f.title}</div>
+                <h3 className={styles.featureTitle}>{f.title}</h3>
                 <p className={styles.featureText}>{f.text}</p>
               </div>
             ))}
@@ -116,7 +116,7 @@ export default async function Home() {
       <section className={styles.section} id="how">
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>How it works</div>
-          <div className={styles.sectionTitle}>FROM PHOTO TO PLOTTER IN SECONDS</div>
+          <h2 className={styles.sectionTitle}>From photo to plotter in seconds</h2>
           <div className={styles.steps}>
             {[
               { n: '01', title: 'Register free', text: 'Create your account in seconds and get 1 free trace — no credit card needed.' },
@@ -126,7 +126,7 @@ export default async function Home() {
             ].map((s, i) => (
               <div key={i} className={styles.step}>
                 <div className={styles.stepNum}>{s.n}</div>
-                <div className={styles.stepTitle}>{s.title}</div>
+                <h3 className={styles.stepTitle}>{s.title}</h3>
                 <p className={styles.stepText}>{s.text}</p>
               </div>
             ))}
@@ -138,7 +138,7 @@ export default async function Home() {
       <section className={styles.section} id="formats">
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>Output formats</div>
-          <div className={styles.sectionTitle}>EVERY FORMAT YOUR SHOP NEEDS</div>
+          <h2 className={styles.sectionTitle}>Every vector format your shop needs — SVG, DXF, EPS, PDF &amp; more</h2>
           <div className={styles.formatsGrid}>
             {[
               { ext: 'SVG', desc: 'Web & Design', badge: 'Universal' },
@@ -149,7 +149,7 @@ export default async function Home() {
               { ext: 'PNG', desc: 'High-res raster', badge: 'Up to 8000px' },
             ].map((f, i) => (
               <div key={i} className={styles.formatCard}>
-                <div className={styles.formatExt}>{f.ext}</div>
+                <h3 className={styles.formatExt}>{f.ext}</h3>
                 <div className={styles.formatDesc}>{f.desc}</div>
                 <div className={styles.formatBadge}>{f.badge}</div>
               </div>
@@ -162,13 +162,13 @@ export default async function Home() {
       <section className={styles.section} id="pricing">
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>Pricing</div>
-          <div className={styles.sectionTitle}>STRAIGHTFORWARD PLANS</div>
+          <h2 className={styles.sectionTitle}>Straightforward plans — register free, upgrade anytime</h2>
           <div className={styles.pricingSubtitle}>All paid plans include a 14-day free trial. No credit card required to register.</div>
 
           <div className={styles.pricingGrid4}>
 
             <div className={styles.priceCard}>
-              <div className={styles.planName}>Free</div>
+              <h3 className={styles.planName}>Free</h3>
               <div className={styles.planPrice}><sup>£</sup>0</div>
               <div className={styles.planPeriod}>1 trace on registration</div>
               <ul className={styles.planFeatures}>
@@ -181,7 +181,7 @@ export default async function Home() {
             </div>
 
             <div className={styles.priceCard}>
-              <div className={styles.planName}>Hobby</div>
+              <h3 className={styles.planName}>Hobby</h3>
               <div className={styles.planPrice}><sup>£</sup>19</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
@@ -196,7 +196,7 @@ export default async function Home() {
 
             <div className={`${styles.priceCard} ${styles.featured}`}>
               <div className={styles.priceBadge}>Most Popular</div>
-              <div className={styles.planName}>Pro</div>
+              <h3 className={styles.planName}>Pro</h3>
               <div className={styles.planPrice}><sup>£</sup>39</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
@@ -211,7 +211,7 @@ export default async function Home() {
             </div>
 
             <div className={styles.priceCard}>
-              <div className={styles.planName}>Studio</div>
+              <h3 className={styles.planName}>Studio</h3>
               <div className={styles.planPrice}><sup>£</sup>79</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
@@ -240,7 +240,7 @@ export default async function Home() {
       <section className={styles.section}>
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>From the trade</div>
-          <div className={styles.sectionTitle}>PROFESSIONALS SPEAK</div>
+          <h2 className={styles.sectionTitle}>Professionals speak</h2>
           <div className={styles.testiGrid}>
             {[
               { text: 'Finally a vectoriser that understands what a sign shop actually needs. The DXF output goes straight into our MultiCam with zero manual cleanup.', name: 'Jason Herrick', role: 'Herrick Signs — Sheffield' },
@@ -260,7 +260,7 @@ export default async function Home() {
       {/* CTA */}
       <section className={styles.ctaSection}>
         <div className={styles.wrap}>
-          <h2>READY TO TRACE?</h2>
+          <h2>Ready to trace?</h2>
           <p>Join sign makers, exhibition stand builders, print shops and promo gift suppliers who&apos;ve made client artwork headaches a thing of the past.</p>
           <Link href="/sign-up" className={styles.btnPrimary}>Register Free — Get Your First Trace</Link>
         </div>
