@@ -22,7 +22,7 @@ export const metadata = {
     default: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
     template: '%s — EasyVector.ai',
   },
-  description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
+  description: 'Free AI image to vector converter for sign makers and print shops. Convert logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds — no credit card required.',
   keywords: [
     'bitmap to vector',
     'image to vector converter',
@@ -66,7 +66,7 @@ export const metadata = {
     url: 'https://easyvector.ai',
     siteName: 'EasyVector.ai',
     title: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
-    description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
+    description: 'Free AI image to vector converter for sign makers and print shops. Convert logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds — no credit card required.',
     images: [
       {
         url: '/og-image.png',
@@ -79,7 +79,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'EasyVector.ai — AI Logos & Bitmaps to Vectors Instantly',
-    description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
+    description: 'Free AI image to vector converter for sign makers and print shops. Convert logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds — no credit card required.',
     images: ['/og-image.png'],
   },
   alternates: {
