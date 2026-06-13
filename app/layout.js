@@ -2,7 +2,6 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
-
 const bebasNeue = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
@@ -17,7 +16,6 @@ const dmMono = DM_Mono({
   subsets: ['latin'],
   variable: '--font-dm-mono',
 });
-
 export const metadata = {
   metadataBase: new URL('https://easyvector.ai'),
   title: {
@@ -94,10 +92,94 @@ export const metadata = {
   },
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'EasyVector.ai',
+  legalName: 'Signsaver Ltd',
+  url: 'https://easyvector.ai',
+  logo: 'https://easyvector.ai/logo.svg',
+  description: 'EasyVector.ai converts AI-generated logos and bitmap images into clean, production-ready vector files for sign makers, print shops and CNC professionals.',
+  sameAs: [
+    'https://www.linkedin.com/in/easy-vector-946a4b414/',
+    'https://www.facebook.com/easyvectorai/',
+    'https://www.instagram.com/vectoreasily/',
+    'https://www.youtube.com/@easyvectorai',
+  ],
+};
+
+const softwareApplicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'EasyVector.ai',
+  applicationCategory: 'DesignApplication',
+  operatingSystem: 'Web',
+  url: 'https://easyvector.ai',
+  description: 'Convert AI logos and bitmaps to clean SVG, EPS, DXF and PDF vectors in seconds. Built for sign makers, print shops and CNC professionals.',
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Free',
+      price: '0',
+      priceCurrency: 'GBP',
+      description: '1 free trace on registration, SVG & PNG output',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Hobby',
+      price: '19',
+      priceCurrency: 'GBP',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '19',
+        priceCurrency: 'GBP',
+        billingDuration: 'P1M',
+      },
+      description: '50 traces per month, SVG, EPS & PDF output',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Pro',
+      price: '39',
+      priceCurrency: 'GBP',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '39',
+        priceCurrency: 'GBP',
+        billingDuration: 'P1M',
+      },
+      description: '150 traces per month, all 6 output formats, colour separation, batch upload',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Studio',
+      price: '79',
+      priceCurrency: 'GBP',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: '79',
+        priceCurrency: 'GBP',
+        billingDuration: 'P1M',
+      },
+      description: '350 traces per month, all 6 output formats, API access, priority support',
+    },
+  ],
+};
+
 export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable} ${dmMono.variable}`}>
+        <head>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+          />
+        </head>
         <body>
           {/* Google tag — GA4 + Google Ads */}
           <Script
