@@ -1,0 +1,32 @@
+# EasyVector.ai
+
+> EasyVector.ai converts AI-generated logos and bitmap images (PNG, JPG, GIF, WebP, BMP) into clean, production-ready vector files. Built for sign makers, print shops, and CNC professionals in the UK and beyond.
+
+EasyVector.ai is operated by Signsaver Ltd, a UK-based company.
+
+## What it does
+
+EasyVector takes a bitmap image — commonly an AI-generated logo that a client has sent as a PNG — and converts it into clean vector formats with smooth Bezier curves and minimal anchor points. Output formats include SVG, EPS, DXF, AI, PDF, and high-resolution PNG. The tool also offers automatic colour separation for spot colour printing and multi-colour vinyl work, and DXF output optimised for CNC routers, plasma cutters, and waterjet machines.
+
+## Who it's for
+
+Sign makers, vehicle wrap installers, vinyl cutting shops, screen printers, embroidery businesses, exhibition stand builders, and promotional product suppliers — anyone who needs to turn a client-supplied bitmap into a usable, scalable vector file for cutting, printing, or routing.
+
+## Pricing
+
+- Free: £0, 1 trace on registration, SVG & PNG output
+- Hobby: £19/month, 50 traces per month, SVG, EPS & PDF output
+- Pro: £39/month, 150 traces per month, all 6 output formats, colour separation, batch upload (most popular)
+- Studio: £79/month, 350 traces per month, all 6 output formats, API access, priority support
+- Agency/high volume: from £149/month, custom plans for 750+ traces, white-label, and API access
+
+All paid plans include a 14-day free trial with no credit card required to register.
+
+## Key pages
+
+- Homepage: https://easyvector.ai
+- How it works: https://easyvector.ai/how-it-works
+- Pricing: https://easyvector.ai/#pricing
+- Support: https://easyvector.ai/support
+- Privacy policy: https://easyvector.ai/privacy
+- Terms of service: https://easyvector.ai/terms
