@@ -113,7 +113,7 @@ export default function TermsPage() {
           <section style={{marginBottom:'2.5rem'}}>
             <h2 style={{fontFamily:'var(--font-display)', fontSize:'1.6rem', letterSpacing:'0.05em', marginBottom:'1rem', color:'var(--accent)'}}>12. CONTACT</h2>
             <p>For any queries regarding these Terms, please contact:</p>
-            <p style={{marginTop:'0.75rem'}}><strong>Signsaver Ltd</strong><br/>20-22 Wenlock Road, London, England, N1 7GU<br/><a href="mailto:hello@easyvector.ai" style={{color:'var(--accent)'}}>hello@easyvector.ai</a></p>
+            <p style={{marginTop:'0.75rem'}}><strong>Signsaver Ltd</strong><br/>20-22 Wenlock Road, London, England, N1 7GU<br/><a href="mailto:support@easyvector.ai" style={{color:'var(--accent)'}}>support@easyvector.ai</a></p>
           </section>
 
         </div>
