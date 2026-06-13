@@ -95,7 +95,7 @@ export default function PrivacyPage() {
               <li>Data portability</li>
               <li>Lodge a complaint with the ICO at <a href="https://ico.org.uk" style={{color:'var(--accent)'}}>ico.org.uk</a></li>
             </ul>
-            <p style={{marginTop:'0.75rem'}}>To exercise any of these rights, email us at <a href="mailto:support@easyvector.ai" style={{color:'var(--accent)'}}>hello@easyvector.ai</a>.</p>
+            <p style={{marginTop:'0.75rem'}}>To exercise any of these rights, email us at <a href="mailto:support@easyvector.ai" style={{color:'var(--accent)'}}>support@easyvector.ai</a>.</p>
           </section>
 
           <section style={{marginBottom:'2.5rem'}}>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
           <section style={{marginBottom:'2.5rem'}}>
             <h2 style={{fontFamily:'var(--font-display)', fontSize:'1.6rem', letterSpacing:'0.05em', marginBottom:'1rem', color:'var(--accent)'}}>10. CONTACT</h2>
             <p>For any privacy-related queries, please contact:</p>
-            <p style={{marginTop:'0.75rem'}}><strong>Signsaver Ltd</strong><br/>20-22 Wenlock Road, London, England, N1 7GU<br/><a href="mailto:hello@easyvector.ai" style={{color:'var(--accent)'}}>hello@easyvector.ai</a></p>
+            <p style={{marginTop:'0.75rem'}}><strong>Signsaver Ltd</strong><br/>20-22 Wenlock Road, London, England, N1 7GU<br/><a href="mailto:support@easyvector.ai" style={{color:'var(--accent)'}}>support@easyvector.ai</a></p>
           </section>
 
         </div>
