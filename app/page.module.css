@@ -290,10 +290,12 @@
   .pricingGrid4 { grid-template-columns: 1fr; }
   .section { padding: 3rem 1.25rem; }
   .btnPrimary, .btnGhost, .heroCardBtn {
+    display: block;
     white-space: normal;
     text-align: center;
     width: 100%;
     box-sizing: border-box;
+    line-height: 1.4;
   }
   .heroActions { flex-direction: column; }
   .heroActions a { width: 100%; box-sizing: border-box; }
@@ -302,6 +304,12 @@
     align-items: flex-start;
   }
   .pricingAgency a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .ctaSection a {
+    display: block;
     width: 100%;
     box-sizing: border-box;
   }
