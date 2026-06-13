@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
+import { resumeCheckoutIfPending } from '../components/CheckoutButtons';
 
 const MAX_MEGAPIXELS = 2.8;
 
@@ -154,6 +155,12 @@ export default function Dashboard() {
         window.history.replaceState({}, '', '/dashboard');
       }
     }
+  }, []);
+
+  // If the user just signed up/in to complete a paid plan checkout,
+  // resume that checkout now and redirect to Stripe.
+  useEffect(() => {
+    resumeCheckoutIfPending();
   }, []);
 
   const isFreePlan = plan === 'free';
