@@ -3,11 +3,9 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import Demo from './components/Demo';
 import { HobbyButton, ProButton, StudioButton } from './components/CheckoutButtons';
-import { auth } from '@clerk/nextjs/server';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
-export default async function Home() {
-  const { userId } = await auth();
-
+export default function Home() {
   return (
     <div className={styles.page}>
 
@@ -36,14 +34,13 @@ export default async function Home() {
           </a>
         </div>
         <div className={styles.navActions}>
-          {userId ? (
+          <SignedIn>
             <Link href="/dashboard" className={styles.navCta}>Go to Dashboard</Link>
-          ) : (
-            <>
-              <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
-              <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
-            </>
-          )}
+          </SignedIn>
+          <SignedOut>
+            <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
+            <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
+          </SignedOut>
         </div>
       </nav>
 
