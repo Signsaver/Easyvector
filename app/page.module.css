@@ -210,9 +210,9 @@
 .planPeriod { font-size: 0.75rem; color: var(--muted); margin-bottom: 1.5rem; }
 .planFeatures { list-style: none; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
 .planFeatures li { font-size: 0.82rem; color: var(--muted); padding-left: 1rem; position: relative; }
-.planFeatures li::before { content: '–'; position: absolute; left: 0; color: var(--muted2); }
+.planFeatures li::before { content: 'â€“'; position: absolute; left: 0; color: var(--muted2); }
 .highlight { color: var(--text) !important; }
-.highlight::before { content: '✓' !important; color: var(--accent) !important; }
+.highlight::before { content: 'âœ“' !important; color: var(--accent) !important; }
 .pricingAgency {
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 12px; padding: 1.5rem 2rem;
@@ -274,9 +274,14 @@
   .hero { grid-template-columns: 1fr; padding: 3rem 1.25rem; }
   .heroRight { display: none; }
   .heroLeft h1 { font-size: 2.8rem; }
-  .nav { padding: 1rem 1.25rem; gap: 1rem; }
+  .nav { padding: 1rem 1.25rem; gap: 0.5rem; flex-wrap: nowrap; }
+  .nav > a { flex-shrink: 1; min-width: 0; }
+  .nav > a img { width: 100%; height: auto; max-width: 160px; }
   .navLinks { display: none; }
   .navSocials { display: none; }
+  .navActions { flex-shrink: 0; gap: 0.5rem; }
+  .navSignIn { display: none; }
+  .navCta { padding: 0.5rem 0.85rem; font-size: 0.75rem; }
   .statsBar { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: repeat(2, 1fr); }
   .featuresGrid { grid-template-columns: 1fr; }
