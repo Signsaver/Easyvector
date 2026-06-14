@@ -69,14 +69,7 @@ export default function PrivacyPage() {
 
           <section style={{marginBottom:'2.5rem'}}>
             <h2 style={{fontFamily:'var(--font-display)', fontSize:'1.6rem', letterSpacing:'0.05em', marginBottom:'1rem', color:'var(--accent)'}}>5. THIRD PARTY SERVICES</h2>
-            <p>We use the following trusted third-party services to operate EasyVector.ai:</p>
-            <ul style={{marginTop:'0.75rem', paddingLeft:'1.5rem', lineHeight:'2'}}>
-              <li><strong>Clerk</strong> — authentication and user account management. <a href="https://clerk.com/privacy" style={{color:'var(--accent)'}}>Privacy Policy</a></li>
-              <li><strong>Stripe</strong> — payment processing. <a href="https://stripe.com/privacy" style={{color:'var(--accent)'}}>Privacy Policy</a></li>
-              <li><strong>Supabase</strong> — database hosting. <a href="https://supabase.com/privacy" style={{color:'var(--accent)'}}>Privacy Policy</a></li>
-              <li><strong>Vercel</strong> — website hosting. <a href="https://vercel.com/legal/privacy-policy" style={{color:'var(--accent)'}}>Privacy Policy</a></li>
-              <li><strong>Vectorizer.ai</strong> — image vectorization processing. <a href="https://vectorizer.ai/privacy" style={{color:'var(--accent)'}}>Privacy Policy</a></li>
-            </ul>
+            <p>We use third-party service providers to operate EasyVector.ai, including for authentication, payments, hosting, email, geolocation, and infrastructure services. These providers process data only as necessary to deliver our service and are bound by their own privacy policies: <a href="https://clerk.com/privacy" style={{color:'var(--accent)'}}>Clerk</a> · <a href="https://stripe.com/privacy" style={{color:'var(--accent)'}}>Stripe</a> · <a href="https://supabase.com/privacy" style={{color:'var(--accent)'}}>Supabase</a> · <a href="https://vercel.com/legal/privacy-policy" style={{color:'var(--accent)'}}>Vercel</a> · <a href="https://resend.com/privacy" style={{color:'var(--accent)'}}>Resend</a> · <a href="https://ipapi.co/privacy" style={{color:'var(--accent)'}}>ipapi.co</a> · <a href="https://vectorizer.ai/privacy" style={{color:'var(--accent)'}}>Vectorizer.ai</a></p>
           </section>
 
           <section style={{marginBottom:'2.5rem'}}>
