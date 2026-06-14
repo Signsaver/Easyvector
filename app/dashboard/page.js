@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './page.module.css';
 import { resumeCheckoutIfPending } from '../components/CheckoutButtons';
+import { getCurrency, PRICES } from '../lib/pricing';
 
 const MAX_MEGAPIXELS = 2.8;
 
@@ -123,6 +124,7 @@ export default function Dashboard() {
   const [loadingCredits, setLoadingCredits] = useState(true);
   const [resized, setResized] = useState(false);
   const [professionMode, setProfessionMode] = useState(PROFESSION_MODES[0]);
+  const [prices, setPrices] = useState(PRICES.GBP);
   const fileRef = useRef();
 
   useEffect(() => {
@@ -157,14 +159,17 @@ export default function Dashboard() {
     }
   }, []);
 
-  // If the user just signed up/in to complete a paid plan checkout,
-  // resume that checkout now and redirect to Stripe.
   useEffect(() => {
     resumeCheckoutIfPending();
   }, []);
 
+  useEffect(() => {
+    getCurrency().then(currency => setPrices(PRICES[currency]));
+  }, []);
+
   const isFreePlan = plan === 'free';
   const freeTracesLeft = credits ?? 0;
+  const s = prices.symbol;
 
   function selectProfessionMode(pm) {
     setProfessionMode(pm);
@@ -312,7 +317,7 @@ export default function Dashboard() {
           <div className={styles.upgradeBanner}>
             <div>
               <strong>No credits remaining!</strong>
-              <p>Upgrade to get more traces and all output formats.</p>
+              <p>Upgrade to get more traces and all output formats. Plans from {s}{prices.hobby}/mo.</p>
             </div>
             <a href="/#pricing" className={styles.upgradeBannerBtn}>View Plans →</a>
           </div>
