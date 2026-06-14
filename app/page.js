@@ -1,11 +1,23 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import Demo from './components/Demo';
 import { HobbyButton, ProButton, StudioButton } from './components/CheckoutButtons';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { getCurrency, PRICES } from './lib/pricing';
 
 export default function Home() {
+  const [prices, setPrices] = useState(PRICES.GBP);
+
+  useEffect(() => {
+    getCurrency().then(currency => setPrices(PRICES[currency]));
+  }, []);
+
+  const s = prices.symbol;
+
   return (
     <div className={styles.page}>
 
@@ -168,7 +180,7 @@ export default function Home() {
 
             <div className={styles.priceCard}>
               <h3 className={styles.planName}>Free</h3>
-              <div className={styles.planPrice}><sup>£</sup>0</div>
+              <div className={styles.planPrice}><sup>{s}</sup>0</div>
               <div className={styles.planPeriod}>1 trace on registration</div>
               <ul className={styles.planFeatures}>
                 <li>1 free trace</li>
@@ -181,7 +193,7 @@ export default function Home() {
 
             <div className={styles.priceCard}>
               <h3 className={styles.planName}>Hobby</h3>
-              <div className={styles.planPrice}><sup>£</sup>19</div>
+              <div className={styles.planPrice}><sup>{s}</sup>{prices.hobby}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
                 <li className={styles.highlight}>50 traces / month</li>
@@ -196,7 +208,7 @@ export default function Home() {
             <div className={`${styles.priceCard} ${styles.featured}`}>
               <div className={styles.priceBadge}>Most Popular</div>
               <h3 className={styles.planName}>Pro</h3>
-              <div className={styles.planPrice}><sup>£</sup>39</div>
+              <div className={styles.planPrice}><sup>{s}</sup>{prices.pro}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
                 <li className={styles.highlight}>150 traces / month</li>
@@ -211,7 +223,7 @@ export default function Home() {
 
             <div className={styles.priceCard}>
               <h3 className={styles.planName}>Studio</h3>
-              <div className={styles.planPrice}><sup>£</sup>79</div>
+              <div className={styles.planPrice}><sup>{s}</sup>{prices.studio}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
                 <li className={styles.highlight}>350 traces / month</li>
@@ -230,7 +242,7 @@ export default function Home() {
               <strong>Agency / High Volume?</strong>
               <span>Need 750+ traces/month, white-label, or a custom API plan? We&apos;ll build a package around your volume.</span>
             </div>
-            <a href="mailto:hello@easyvector.ai" className={styles.btnPrimary}>Contact Us — £149+/mo</a>
+            <a href="mailto:hello@easyvector.ai" className={styles.btnPrimary}>Contact Us — {s}{prices.agency}+/mo</a>
           </div>
         </div>
       </section>
