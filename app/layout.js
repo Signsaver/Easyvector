@@ -2,6 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { Bebas_Neue, DM_Sans, DM_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
+
 const bebasNeue = Bebas_Neue({
   weight: '400',
   subsets: ['latin'],
@@ -16,6 +17,7 @@ const dmMono = DM_Mono({
   subsets: ['latin'],
   variable: '--font-dm-mono',
 });
+
 export const metadata = {
   metadataBase: new URL('https://easyvector.ai'),
   title: {
@@ -148,9 +150,77 @@ const softwareApplicationSchema = {
   ],
 };
 
+const clerkAppearance = {
+  variables: {
+    colorBackground: '#1a1d1f',
+    colorInputBackground: '#0f1011',
+    colorInputText: '#f0ede8',
+    colorText: '#f0ede8',
+    colorTextSecondary: '#a09d98',
+    colorPrimary: '#f5820a',
+    colorDanger: '#f87171',
+    colorSuccess: '#4ade80',
+    borderRadius: '8px',
+  },
+  elements: {
+    card: {
+      background: '#1a1d1f',
+      border: '1px solid rgba(255,255,255,0.1)',
+      boxShadow: '0 8px 40px rgba(0,0,0,0.6)',
+    },
+    headerTitle: { color: '#f0ede8' },
+    headerSubtitle: { color: '#a09d98' },
+    socialButtonsBlockButton: {
+      background: '#0f1011',
+      border: '1px solid rgba(255,255,255,0.12)',
+      color: '#f0ede8',
+    },
+    socialButtonsBlockButtonText: { color: '#f0ede8' },
+    dividerLine: { background: 'rgba(255,255,255,0.1)' },
+    dividerText: { color: '#a09d98' },
+    formFieldLabel: { color: '#a09d98' },
+    formFieldInput: {
+      background: '#0f1011',
+      border: '1px solid rgba(255,255,255,0.15)',
+      color: '#f0ede8',
+    },
+    formFieldInputShowPasswordButton: { color: '#a09d98' },
+    formButtonPrimary: {
+      background: '#f5820a',
+      color: '#000',
+      fontWeight: '600',
+    },
+    footerActionLink: { color: '#f5820a' },
+    footerActionText: { color: '#a09d98' },
+    identityPreviewText: { color: '#f0ede8' },
+    identityPreviewEditButton: { color: '#f5820a' },
+    // Profile/account modal
+    profileSectionTitle: { color: '#f0ede8' },
+    profileSectionTitleText: { color: '#f0ede8' },
+    profileSectionContent: { color: '#f0ede8' },
+    profileSectionPrimaryButton: {
+      color: '#f5820a',
+      borderColor: '#f5820a',
+    },
+    accordionTriggerButton: { color: '#f0ede8' },
+    navbarButton: { color: '#a09d98' },
+    navbarButtonActive: { color: '#f0ede8' },
+    pageScrollBox: { background: '#1a1d1f' },
+    page: { background: '#1a1d1f' },
+    userPreviewMainIdentifier: { color: '#f0ede8' },
+    userPreviewSecondaryIdentifier: { color: '#a09d98' },
+    badge: { background: 'rgba(245,130,10,0.15)', color: '#f5820a' },
+    menuList: {
+      background: '#1a1d1f',
+      border: '1px solid rgba(255,255,255,0.1)',
+    },
+    menuItem: { color: '#f0ede8' },
+  },
+};
+
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={clerkAppearance}>
       <html lang="en" className={`${bebasNeue.variable} ${dmSans.variable} ${dmMono.variable}`}>
         <head>
           <script
