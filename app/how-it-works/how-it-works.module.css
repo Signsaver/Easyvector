@@ -141,8 +141,8 @@
   font-size: 0.9rem;
   color: var(--muted);
 }
-.good::before { content: 'âœ“'; position: absolute; left: 0; color: #4ade80; font-weight: 700; }
-.bad::before { content: 'âœ—'; position: absolute; left: 0; color: #f87171; font-weight: 700; }
+.good::before { content: '\2713'; position: absolute; left: 0; color: #4ade80; font-weight: 700; }
+.bad::before { content: '\2717'; position: absolute; left: 0; color: #f87171; font-weight: 700; }
 
 /* PROCESS STEPS */
 .processSteps {
