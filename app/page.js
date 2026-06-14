@@ -245,10 +245,14 @@ export default function Home() {
               { text: 'Finally a vectoriser that understands what a sign shop actually needs. The DXF output goes straight into our MultiCam with zero manual cleanup.', name: 'Jason Herrick', role: 'Herrick Signs — Sheffield' },
               { text: 'The colour separation alone saves me 20 minutes per job. I put in a JPEG logo, it comes out in three perfectly separated layers ready to weed.', name: 'Maria Papadopoulos', role: 'Bright Wraps — Bristol' },
               { text: 'We integrated the API into our customer portal in a day. Clients upload their logos and get vectors back instantly — we only touch the file at production.', name: 'Dan Okafor', role: 'SignSystems Group — Manchester' },
+              { text: 'I use Illustrator to a high level, but even so, EasyVector.ai has saved me enormous amounts of time. Rather than spending 30 minutes to an hour redrawing client artwork, it does it for me in seconds.', name: 'Jamie Laird', role: 'Signsaver — Aberdeen', verified: true },
             ].map((t, i) => (
               <div key={i} className={styles.testiCard}>
                 <p className={styles.testiText}>{t.text}</p>
-                <div className={styles.testiAuthor}>{t.name}</div>
+                <div className={styles.testiAuthor}>
+                  {t.name}
+                  {t.verified && <span className={styles.testiVerified}>✓ Verified industry professional</span>}
+                </div>
                 <div className={styles.testiRole}>{t.role}</div>
               </div>
             ))}
