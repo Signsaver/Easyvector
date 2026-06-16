@@ -264,7 +264,7 @@ export default function Dashboard() {
 
       {/* NAV */}
       <nav className={styles.nav}>
-        <Link href="/"><Image src="/logo.svg" alt="EasyVector.ai" width={220} height={42} priority /></Link>
+        <Link href="/"><Image src="/logo.svg" alt="EasyVector.ai" width={420} height={78} priority /></Link>
         <div className={styles.navRight}>
           <div className={styles.planBadge}>
             {loadingCredits ? '...' : isFreePlan ? `Free — ${freeTracesLeft} trace${freeTracesLeft !== 1 ? 's' : ''} left` : `${plan} — ${freeTracesLeft} traces left`}
