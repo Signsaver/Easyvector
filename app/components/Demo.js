@@ -3,11 +3,11 @@
 import { useEffect, useRef } from 'react';
 
 const PALETTE = ['#DA4B26', '#1F9AA8', '#EFA722', '#C9437E', '#2E9C68'];
-const CREAM = '#F1EBDF';
 const DISC = '#16181C';
 const ACCENT = '#C0411E';
 const PIXEL_BLOCK = 9;
-const ASPECT = 1.12;
+const ASPECT = 0.54;
+const MAX_WIDTH = 640;
 
 export default function Demo() {
   const stageRef = useRef(null);
@@ -44,18 +44,21 @@ export default function Demo() {
 
     const drawScene = (ctx, w, h) => {
       ctx.clearRect(0, 0, w, h);
-      ctx.fillStyle = CREAM;
-      ctx.fillRect(0, 0, w, h);
 
-      const pad = w * 0.03;
-      const badgeH = h * 0.74;
+      const n = PALETTE.length;
+      const bw = w / n;
+      for (let j = 0; j < n; j++) {
+        ctx.fillStyle = PALETTE[j];
+        ctx.fillRect(j * bw, 0, bw + 1, h);
+      }
+
       const cx = w / 2;
-      const cy = badgeH * 0.5 + pad;
-      const R = Math.min(w, badgeH) * 0.4;
+      const cy = h / 2;
+      const R = h * 0.4;
 
       ctx.fillStyle = '#FFFFFF';
       ctx.beginPath();
-      ctx.arc(cx, cy, R * 1.1, 0, Math.PI * 2);
+      ctx.arc(cx, cy, R * 1.15, 0, Math.PI * 2);
       ctx.fill();
 
       const ticks = 12;
@@ -114,15 +117,6 @@ export default function Demo() {
       };
       node(cx - d * 0.5, cy + d * 0.45);
       node(cx + d * 0.5, cy - d * 0.45);
-
-      const barY = badgeH + pad;
-      const barH = h - barY - pad;
-      const n = PALETTE.length;
-      const sw = (w - pad * 2) / n;
-      for (let j = 0; j < n; j++) {
-        ctx.fillStyle = PALETTE[j];
-        ctx.fillRect(pad + j * sw, barY, sw + 0.8, barH);
-      }
     };
 
     const setDivider = (x) => {
@@ -146,8 +140,8 @@ export default function Demo() {
       actx.setTransform(dpr, 0, 0, dpr, 0, 0);
       drawScene(actx, W, H);
 
-      const sw = Math.max(34, Math.round(W / PIXEL_BLOCK));
-      const sh = Math.max(34, Math.round(H / PIXEL_BLOCK));
+      const sw = Math.max(40, Math.round(W / PIXEL_BLOCK));
+      const sh = Math.max(20, Math.round(H / PIXEL_BLOCK));
       small.width = sw;
       small.height = sh;
       const sctx = small.getContext('2d');
@@ -218,58 +212,4 @@ export default function Demo() {
       if (p < 1) rafId = requestAnimationFrame(nudge);
       else setDivider(0.5 * curW);
     };
-    const nudgeTimer = setTimeout(() => {
-      rafId = requestAnimationFrame(nudge);
-    }, 450);
-
-    return () => {
-      stage.removeEventListener('pointerdown', onDown);
-      stage.removeEventListener('pointermove', onMove);
-      stage.removeEventListener('keydown', onKey);
-      if (ro) ro.disconnect();
-      clearTimeout(nudgeTimer);
-      if (rafId) cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  return (
-    <div className="ev-demo-wrap">
-      <style>{`
-        .ev-demo-wrap{max-width:480px;margin:0 auto;background:${CREAM};border-radius:18px;padding:18px;box-sizing:border-box;}
-        .ev-demo-stage{position:relative;width:100%;margin:0 auto;touch-action:none;cursor:ew-resize;border-radius:10px;overflow:hidden;outline:none;}
-        .ev-demo-stage:focus-visible{box-shadow:0 0 0 3px rgba(192,65,30,0.5);}
-        .ev-demo-canvas{position:absolute;top:0;left:0;display:block;width:100%;height:100%;}
-        .ev-demo-pill{position:absolute;top:12px;z-index:5;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:7px 14px;border-radius:20px;color:#F6F1E7;pointer-events:none;}
-        .ev-demo-before{left:12px;background:#3A3D41;}
-        .ev-demo-after{right:12px;background:${ACCENT};}
-        .ev-demo-divider{position:absolute;top:0;bottom:0;width:2px;background:#F6F1E7;z-index:4;transform:translateX(-1px);pointer-events:none;}
-        .ev-demo-handle{position:absolute;top:50%;z-index:6;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#F6F1E7;border:3px solid ${ACCENT};box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:4px;pointer-events:none;}
-        .ev-demo-handle span{width:4px;height:15px;border-radius:2px;background:${ACCENT};}
-        .ev-demo-caption{margin-top:16px;text-align:center;font-size:13px;letter-spacing:2px;color:#7A746A;}
-      `}</style>
-
-      <div
-        ref={stageRef}
-        className="ev-demo-stage"
-        role="slider"
-        aria-label="Drag to compare the original bitmap with the vectorised result"
-        aria-valuemin={0}
-        aria-valuemax={100}
-        aria-valuenow={50}
-        tabIndex={0}
-      >
-        <canvas ref={afterRef} className="ev-demo-canvas" aria-hidden="true" />
-        <canvas ref={beforeRef} className="ev-demo-canvas" aria-hidden="true" />
-        <span className="ev-demo-pill ev-demo-before">BEFORE</span>
-        <span className="ev-demo-pill ev-demo-after">AFTER</span>
-        <div ref={dividerRef} className="ev-demo-divider" />
-        <div ref={handleRef} className="ev-demo-handle">
-          <span />
-          <span />
-        </div>
-      </div>
-
-      <div className="ev-demo-caption">DRAG&nbsp;&nbsp;TO&nbsp;&nbsp;COMPARE</div>
-    </div>
-  );
-}
+    const
