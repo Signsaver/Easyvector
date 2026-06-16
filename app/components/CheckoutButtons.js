@@ -34,7 +34,7 @@ export function StudioButton({ className, style }) {
   return <button onClick={() => handleCheckout('price_1Te955L0DPwWCCgGmFxM4C4H')} className={className} style={style}>Start Free Trial</button>;
 }
 export function TestButton() {
-  return <button onClick={() => handleCheckout('price_1TfPi6L0DPwWCCgGIJNkzKMW')} style={{background:'#f5820a', color:'#000', border:'none', borderRadius:'6px', padding:'0.5rem 1.2rem', fontWeight:'600', cursor:'pointer'}}>Test Payment — £1.00</button>;
+  return <button onClick={() => handleCheckout('price_1TfPi6L0DPwWCCgGIJNkzKMW')} style={{background:'#de4426', color:'#000', border:'none', borderRadius:'6px', padding:'0.5rem 1.2rem', fontWeight:'600', cursor:'pointer'}}>Test Payment — £1.00</button>;
 }
 
 // Exported so the dashboard page can resume checkout after sign-up/sign-in.
