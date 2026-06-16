@@ -1,3 +1,4 @@
+/* Palette update: orange (#f5820a/#ffaa45) â†’ brick (#bd3b1a) / vermillion (#de4426). Only colour values changed. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #0a0b0c;
@@ -6,9 +7,9 @@
   --surface3: #222527;
   --border: rgba(255,255,255,0.06);
   --border2: rgba(255,255,255,0.12);
-  --accent: #f5820a;
-  --accent2: #ffaa45;
-  --accent-dim: rgba(245,130,10,0.12);
+  --accent: #bd3b1a;
+  --accent2: #de4426;
+  --accent-dim: rgba(189,59,26,0.12);
   --text: #f0ede8;
   --muted: #888580;
   --muted2: #7a7773;
@@ -30,8 +31,8 @@ body::before {
   content: '';
   position: fixed; inset: 0;
   background-image:
-    linear-gradient(rgba(245,130,10,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(245,130,10,0.03) 1px, transparent 1px);
+    linear-gradient(rgba(189,59,26,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(189,59,26,0.03) 1px, transparent 1px);
   background-size: 48px 48px;
   pointer-events: none; z-index: 0;
 }
@@ -57,21 +58,21 @@ input, select, textarea { font-family: var(--font-body); }
 }
 .cl-headerSubtitle { color: #888580 !important; }
 .cl-formButtonPrimary {
-  background: #f5820a !important;
-  color: #000 !important;
+  background: #bd3b1a !important;
+  color: #f0ede8 !important;
   font-weight: 600 !important;
 }
-.cl-formButtonPrimary:hover { background: #ffaa45 !important; }
-.cl-footerActionLink { color: #f5820a !important; }
+.cl-formButtonPrimary:hover { background: #de4426 !important; }
+.cl-footerActionLink { color: #de4426 !important; }
 .cl-formFieldInput {
   background: #2a2d2f !important;
   border: 1px solid rgba(255,255,255,0.2) !important;
   color: #f0ede8 !important;
   border-radius: 6px !important;
-  caret-color: #f5820a !important;
+  caret-color: #de4426 !important;
 }
 .cl-formFieldInput:focus {
-  border-color: #f5820a !important;
+  border-color: #de4426 !important;
   outline: none !important;
   background: #313538 !important;
 }
@@ -102,7 +103,7 @@ input, select, textarea { font-family: var(--font-body); }
   border-radius: 6px !important;
 }
 .cl-otpCodeFieldInput:focus {
-  border-color: #f5820a !important;
+  border-color: #de4426 !important;
   background: #313538 !important;
 }
 .cl-navbar { background: #1a1d1f !important; }
