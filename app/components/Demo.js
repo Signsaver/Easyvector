@@ -2,12 +2,30 @@
 
 import { useEffect, useRef } from 'react';
 
-const PALETTE = ['#DA4B26', '#1F9AA8', '#EFA722', '#C9437E', '#2E9C68'];
-const DISC = '#16181C';
-const ACCENT = '#C0411E';
-const PIXEL_BLOCK = 9;
-const ASPECT = 0.54;
-const MAX_WIDTH = 640;
+/*
+ * EasyVector demo slider (landscape)
+ * -----------------------------------------------------------
+ * Drag-to-compare bitmap -> vector. Full-bleed colour spectrum with a
+ * central pen-path medallion punched into the middle.
+ *  - Left of the divider: rendered to a tiny canvas and scaled back up with
+ *    smoothing OFF, so the pixels are REAL (not a blur).
+ *  - Right of the divider: the same scene rendered crisp = the vector result.
+ * Drag with mouse, touch, or arrow keys. Auto-nudges once on load.
+ *
+ * Replace app/components/Demo.js with this file. The parent keeps importing
+ * <Demo /> exactly as before (default export, same name).
+ *
+ * Tweakables live in the CONFIG block below.
+ */
+
+// --- CONFIG -------------------------------------------------
+const PALETTE = ['#DA4B26', '#1F9AA8', '#EFA722', '#C9437E', '#2E9C68']; // spectrum bands + wheel
+const DISC = '#16181C';    // central disc (keeps brand black)
+const ACCENT = '#C0411E';  // orange accent: AFTER pill, handle ring, pen control dot
+const PIXEL_BLOCK = 9;      // higher = chunkier pixels on the BEFORE side
+const ASPECT = 0.54;        // stage height / width  (lower = wider / more panoramic)
+const MAX_WIDTH = 640;      // px cap on the demo card width
+// ------------------------------------------------------------
 
 export default function Demo() {
   const stageRef = useRef(null);
@@ -45,6 +63,7 @@ export default function Demo() {
     const drawScene = (ctx, w, h) => {
       ctx.clearRect(0, 0, w, h);
 
+      // full-bleed spectrum bands
       const n = PALETTE.length;
       const bw = w / n;
       for (let j = 0; j < n; j++) {
@@ -56,11 +75,13 @@ export default function Demo() {
       const cy = h / 2;
       const R = h * 0.4;
 
+      // white medallion backdrop
       ctx.fillStyle = '#FFFFFF';
       ctx.beginPath();
       ctx.arc(cx, cy, R * 1.15, 0, Math.PI * 2);
       ctx.fill();
 
+      // 12 colour ticks
       const ticks = 12;
       const inner = R * 0.66;
       const outer = R * 0.98;
@@ -79,11 +100,13 @@ export default function Demo() {
         ctx.restore();
       }
 
+      // central disc
       ctx.fillStyle = DISC;
       ctx.beginPath();
       ctx.arc(cx, cy, R * 0.5, 0, Math.PI * 2);
       ctx.fill();
 
+      // pen-path emblem
       const d = R * 0.5;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
@@ -134,12 +157,14 @@ export default function Demo() {
       stage.style.height = H + 'px';
       const dpr = window.devicePixelRatio || 1;
 
+      // crisp (AFTER)
       after.width = Math.round(W * dpr);
       after.height = Math.round(H * dpr);
       const actx = after.getContext('2d');
       actx.setTransform(dpr, 0, 0, dpr, 0, 0);
       drawScene(actx, W, H);
 
+      // pixelated (BEFORE) — render small, blow up with smoothing off
       const sw = Math.max(40, Math.round(W / PIXEL_BLOCK));
       const sh = Math.max(20, Math.round(H / PIXEL_BLOCK));
       small.width = sw;
@@ -212,4 +237,58 @@ export default function Demo() {
       if (p < 1) rafId = requestAnimationFrame(nudge);
       else setDivider(0.5 * curW);
     };
-    const
+    const nudgeTimer = setTimeout(() => {
+      rafId = requestAnimationFrame(nudge);
+    }, 450);
+
+    return () => {
+      stage.removeEventListener('pointerdown', onDown);
+      stage.removeEventListener('pointermove', onMove);
+      stage.removeEventListener('keydown', onKey);
+      if (ro) ro.disconnect();
+      clearTimeout(nudgeTimer);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, []);
+
+  return (
+    <div className="ev-demo-wrap">
+      <style>{`
+        .ev-demo-wrap{max-width:${MAX_WIDTH}px;margin:0 auto;background:#F1EBDF;border-radius:16px;padding:14px;box-sizing:border-box;}
+        .ev-demo-stage{position:relative;width:100%;margin:0 auto;touch-action:none;cursor:ew-resize;border-radius:10px;overflow:hidden;outline:none;}
+        .ev-demo-stage:focus-visible{box-shadow:0 0 0 3px rgba(192,65,30,0.5);}
+        .ev-demo-canvas{position:absolute;top:0;left:0;display:block;width:100%;height:100%;}
+        .ev-demo-pill{position:absolute;top:12px;z-index:5;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:6px 13px;border-radius:20px;color:#F6F1E7;pointer-events:none;}
+        .ev-demo-before{left:12px;background:#3A3D41;}
+        .ev-demo-after{right:12px;background:${ACCENT};}
+        .ev-demo-divider{position:absolute;top:0;bottom:0;width:2px;background:#F6F1E7;z-index:4;transform:translateX(-1px);pointer-events:none;}
+        .ev-demo-handle{position:absolute;top:50%;z-index:6;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#F6F1E7;border:3px solid ${ACCENT};box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:4px;pointer-events:none;}
+        .ev-demo-handle span{width:4px;height:15px;border-radius:2px;background:${ACCENT};}
+        .ev-demo-caption{margin-top:14px;text-align:center;font-size:13px;letter-spacing:2px;color:#7A746A;}
+      `}</style>
+
+      <div
+        ref={stageRef}
+        className="ev-demo-stage"
+        role="slider"
+        aria-label="Drag to compare the original bitmap with the vectorised result"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={50}
+        tabIndex={0}
+      >
+        <canvas ref={afterRef} className="ev-demo-canvas" aria-hidden="true" />
+        <canvas ref={beforeRef} className="ev-demo-canvas" aria-hidden="true" />
+        <span className="ev-demo-pill ev-demo-before">BEFORE</span>
+        <span className="ev-demo-pill ev-demo-after">AFTER</span>
+        <div ref={dividerRef} className="ev-demo-divider" />
+        <div ref={handleRef} className="ev-demo-handle">
+          <span />
+          <span />
+        </div>
+      </div>
+
+      <div className="ev-demo-caption">DRAG&nbsp;&nbsp;TO&nbsp;&nbsp;COMPARE</div>
+    </div>
+  );
+}
