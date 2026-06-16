@@ -1,4 +1,4 @@
-/* Palette update: orange (#f5820a/#ffaa45) â†’ brick (#bd3b1a) / vermillion (#de4426). Only colour values changed. */
+/* Palette update: orange (#de4426/#ffaa45) â†’ brick (#bd3b1a) / vermillion (#de4426). Only colour values changed. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #0a0b0c;
