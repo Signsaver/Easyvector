@@ -1,4 +1,4 @@
-/* Palette update: black button text (#000) on accent backgrounds â†’ cream (#f0ede8) for legibility on brick. All other colour comes from var(--accent)/var(--accent2). */
+/* Palette update: black button text (#000) on accent backgrounds → cream (#f0ede8) for legibility on brick. All other colour comes from var(--accent)/var(--accent2). */
 /* BASE */
 .page { min-height: 100vh; }
 
@@ -16,7 +16,7 @@
   list-style: none; flex: 1;
 }
 .navLinks a {
-  font-size: 0.82rem; letter-spacing: 0.06em;
+  font-size: 1.23rem; letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted);
   transition: color 0.2s;
 }
@@ -30,17 +30,18 @@
   color: var(--muted); transition: color 0.2s;
   display: flex; align-items: center;
 }
+.navSocials a svg { width: 30px; height: 30px; }
 .navSocials a:hover { color: var(--accent); }
 .navActions { display: flex; align-items: center; gap: 0.75rem; }
 .navSignIn {
-  font-size: 0.82rem; color: var(--muted);
+  font-size: 1.23rem; color: var(--muted);
   transition: color 0.2s; white-space: nowrap;
 }
 .navSignIn:hover { color: var(--text); }
 .navCta {
   background: var(--accent); color: #f0ede8;
-  padding: 0.5rem 1.2rem; font-weight: 600;
-  font-size: 0.82rem; border-radius: 6px;
+  padding: 0.75rem 1.8rem; font-weight: 600;
+  font-size: 1.23rem; border-radius: 6px;
   white-space: nowrap; transition: background 0.2s;
 }
 .navCta:hover { background: var(--accent2); }
@@ -266,6 +267,24 @@
 .footerSocials a:hover { color: var(--accent); }
 
 /* RESPONSIVE */
+@media (max-width: 1500px) {
+  .nav > a img { width: 350px; height: auto; }
+  .navLinks { gap: 1.5rem; }
+  .navLinks a { font-size: 1.03rem; }
+  .navSignIn { font-size: 1.03rem; }
+  .navSocials a svg { width: 25px; height: 25px; }
+  .navCta { font-size: 1.03rem; padding: 0.65rem 1.5rem; }
+}
+@media (max-width: 1100px) {
+  .nav { gap: 1rem; padding: 1rem 1.5rem; }
+  .nav > a img { width: 280px; height: auto; }
+  .navLinks { gap: 1.1rem; }
+  .navLinks a { font-size: 0.82rem; }
+  .navSignIn { font-size: 0.82rem; }
+  .navSocials { gap: 0.9rem; padding-right: 1rem; }
+  .navSocials a svg { width: 20px; height: 20px; }
+  .navCta { font-size: 0.82rem; padding: 0.5rem 1.2rem; }
+}
 @media (max-width: 1024px) {
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
   .formatsGrid { grid-template-columns: repeat(3, 1fr); }
