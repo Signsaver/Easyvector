@@ -24,7 +24,7 @@ const DISC = '#16181C';    // central disc (keeps brand black)
 const ACCENT = '#C0411E';  // orange accent: AFTER pill, handle ring, pen control dot
 const PIXEL_BLOCK = 9;      // higher = chunkier pixels on the BEFORE side
 const ASPECT = 0.42;        // stage height / width  (lower = wider / more panoramic)
-const MAX_WIDTH = 640;      // px cap on the demo card width
+const MARGIN_Y = '2.5rem';  // vertical space above and below the demo
 // ------------------------------------------------------------
 
 export default function Demo() {
@@ -254,7 +254,7 @@ export default function Demo() {
   return (
     <div className="ev-demo-wrap">
       <style>{`
-        .ev-demo-wrap{max-width:${MAX_WIDTH}px;margin:0 auto;background:#F1EBDF;border-radius:16px;padding:14px;box-sizing:border-box;}
+        .ev-demo-wrap{width:100%;max-width:100%;margin:${MARGIN_Y} auto;background:#F1EBDF;border-radius:16px;padding:16px;box-sizing:border-box;}
         .ev-demo-stage{position:relative;width:100%;margin:0 auto;touch-action:none;cursor:ew-resize;border-radius:10px;overflow:hidden;outline:none;}
         .ev-demo-stage:focus-visible{box-shadow:0 0 0 3px rgba(192,65,30,0.5);}
         .ev-demo-canvas{position:absolute;top:0;left:0;display:block;width:100%;height:100%;}
