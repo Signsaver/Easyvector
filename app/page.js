@@ -78,10 +78,10 @@ export default function Home() {
             <div className={styles.heroCardLabel}>Upload any bitmap</div>
             <div className={styles.heroCardArrow}>↓</div>
             <div className={styles.heroCardOutput}>
-              <span className={styles.formatTag}>SVG</span>
-              <span className={styles.formatTag}>DXF</span>
-              <span className={styles.formatTag}>EPS</span>
-              <span className={styles.formatTag}>PDF</span>
+              <span className={`${styles.formatTag} ${styles.fmtSvg}`}>SVG</span>
+              <span className={`${styles.formatTag} ${styles.fmtDxf}`}>DXF</span>
+              <span className={`${styles.formatTag} ${styles.fmtEps}`}>EPS</span>
+              <span className={`${styles.formatTag} ${styles.fmtPdf}`}>PDF</span>
             </div>
             <div className={styles.heroCardLabel}>Download production-ready vectors</div>
             <Link href="/sign-up" className={styles.heroCardBtn}>Start Free →</Link>
