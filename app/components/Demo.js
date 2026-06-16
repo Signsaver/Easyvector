@@ -23,7 +23,7 @@ const PALETTE = ['#DA4B26', '#1F9AA8', '#EFA722', '#C9437E', '#2E9C68']; // spec
 const DISC = '#16181C';    // central disc (keeps brand black)
 const ACCENT = '#C0411E';  // orange accent: AFTER pill, handle ring, pen control dot
 const PIXEL_BLOCK = 9;      // higher = chunkier pixels on the BEFORE side
-const ASPECT = 0.54;        // stage height / width  (lower = wider / more panoramic)
+const ASPECT = 0.42;        // stage height / width  (lower = wider / more panoramic)
 const MAX_WIDTH = 640;      // px cap on the demo card width
 // ------------------------------------------------------------
 
