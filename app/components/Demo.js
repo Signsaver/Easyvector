@@ -13,12 +13,12 @@ const EXAMPLES = [
     bitmap: '/demo/logo-bitmap.png',
     // Inline SVG shown as the vector result
     svgContent: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="100" cy="100" r="90" fill="none" stroke="#f5820a" stroke-width="8"/>
-      <circle cx="100" cy="100" r="70" fill="none" stroke="#f5820a" stroke-width="4"/>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#de4426" stroke-width="8"/>
+      <circle cx="100" cy="100" r="70" fill="none" stroke="#de4426" stroke-width="4"/>
       <text x="100" y="95" text-anchor="middle" font-family="Arial Black" font-size="28" font-weight="900" fill="#f0ede8">EASY</text>
-      <text x="100" y="125" text-anchor="middle" font-family="Arial Black" font-size="18" font-weight="900" fill="#f5820a">VECTOR</text>
-      <line x1="40" y1="108" x2="75" y2="108" stroke="#f5820a" stroke-width="2"/>
-      <line x1="125" y1="108" x2="160" y2="108" stroke="#f5820a" stroke-width="2"/>
+      <text x="100" y="125" text-anchor="middle" font-family="Arial Black" font-size="18" font-weight="900" fill="#de4426">VECTOR</text>
+      <line x1="40" y1="108" x2="75" y2="108" stroke="#de4426" stroke-width="2"/>
+      <line x1="125" y1="108" x2="160" y2="108" stroke="#de4426" stroke-width="2"/>
     </svg>`,
   },
   {
@@ -26,12 +26,12 @@ const EXAMPLES = [
     description: 'Vehicle wrap design ready for cutting',
     bitmap: '/demo/sign-bitmap.png',
     svgContent: `<svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="10" width="280" height="130" rx="12" fill="none" stroke="#f5820a" stroke-width="6"/>
-      <rect x="20" y="20" width="260" height="110" rx="8" fill="none" stroke="#f5820a" stroke-width="2" stroke-dasharray="8,4"/>
+      <rect x="10" y="10" width="280" height="130" rx="12" fill="none" stroke="#de4426" stroke-width="6"/>
+      <rect x="20" y="20" width="260" height="110" rx="8" fill="none" stroke="#de4426" stroke-width="2" stroke-dasharray="8,4"/>
       <text x="150" y="75" text-anchor="middle" font-family="Arial Black" font-size="36" font-weight="900" fill="#f0ede8">OPEN</text>
       <text x="150" y="108" text-anchor="middle" font-family="Arial" font-size="14" fill="#888580" letter-spacing="6">24 HOURS</text>
-      <circle cx="50" cy="75" r="20" fill="none" stroke="#f5820a" stroke-width="4"/>
-      <circle cx="250" cy="75" r="20" fill="none" stroke="#f5820a" stroke-width="4"/>
+      <circle cx="50" cy="75" r="20" fill="none" stroke="#de4426" stroke-width="4"/>
+      <circle cx="250" cy="75" r="20" fill="none" stroke="#de4426" stroke-width="4"/>
     </svg>`,
   },
   {
@@ -39,8 +39,8 @@ const EXAMPLES = [
     description: 'Embroidery & print-ready output',
     bitmap: '/demo/promo-bitmap.png',
     svgContent: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-      <polygon points="100,15 120,70 180,70 130,105 150,160 100,125 50,160 70,105 20,70 80,70" fill="none" stroke="#f5820a" stroke-width="5" stroke-linejoin="round"/>
-      <polygon points="100,40 114,82 158,82 122,107 136,149 100,124 64,149 78,107 42,82 86,82" fill="#f5820a" opacity="0.15"/>
+      <polygon points="100,15 120,70 180,70 130,105 150,160 100,125 50,160 70,105 20,70 80,70" fill="none" stroke="#de4426" stroke-width="5" stroke-linejoin="round"/>
+      <polygon points="100,40 114,82 158,82 122,107 136,149 100,124 64,149 78,107 42,82 86,82" fill="#de4426" opacity="0.15"/>
       <text x="100" y="188" text-anchor="middle" font-family="Arial" font-size="11" fill="#888580" letter-spacing="3">PREMIUM</text>
     </svg>`,
   },
