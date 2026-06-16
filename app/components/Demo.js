@@ -262,11 +262,10 @@ export default function Demo() {
         .ev-demo-stage:focus-visible{box-shadow:0 0 0 3px rgba(192,65,30,0.5);}
         .ev-demo-canvas{position:absolute;top:0;left:0;display:block;width:100%;height:100%;}
         .ev-demo-pill{position:absolute;top:12px;z-index:5;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:6px 13px;border-radius:20px;color:#F6F1E7;pointer-events:none;}
-        .ev-demo-before{right:12px;background:#3A3D41;}
-        .ev-demo-after{left:12px;background:${ACCENT};}
+        .ev-demo-before{left:12px;background:#3A3D41;}
+        .ev-demo-after{right:12px;background:${ACCENT};}
         .ev-demo-divider{position:absolute;top:0;bottom:0;width:2px;background:#F6F1E7;z-index:4;transform:translateX(-1px);pointer-events:none;}
-        .ev-demo-handle{position:absolute;top:50%;z-index:6;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#F6F1E7;border:3px solid ${ACCENT};box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:4px;pointer-events:none;}
-        .ev-demo-handle span{width:4px;height:15px;border-radius:2px;background:${ACCENT};}
+        .ev-demo-handle{position:absolute;top:50%;z-index:6;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#F6F1E7;border:3px solid ${ACCENT};box-sizing:border-box;pointer-events:none;}
         .ev-demo-caption{margin-top:14px;text-align:center;font-size:13px;letter-spacing:2px;color:#7A746A;}
       `}</style>
 
@@ -285,10 +284,7 @@ export default function Demo() {
         <span className="ev-demo-pill ev-demo-before">BEFORE</span>
         <span className="ev-demo-pill ev-demo-after">AFTER</span>
         <div ref={dividerRef} className="ev-demo-divider" />
-        <div ref={handleRef} className="ev-demo-handle">
-          <span />
-          <span />
-        </div>
+        <div ref={handleRef} className="ev-demo-handle"></div>
       </div>
 
       <div className="ev-demo-caption">DRAG&nbsp;&nbsp;TO&nbsp;&nbsp;COMPARE</div>
