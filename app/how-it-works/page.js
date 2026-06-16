@@ -157,7 +157,7 @@ export default function HowItWorksPage() {
           <div className={styles.sectionTitle}>WHICH FORMAT DO I NEED?</div>
           <div className={styles.formatsGrid}>
             {[
-              { ext: 'SVG', colour: '#f5820a', title: 'Web & Design', uses: ['Websites & apps', 'Adobe Illustrator', 'Inkscape', 'Canva Pro'], best: 'Universal format — use this if unsure' },
+              { ext: 'SVG', colour: '#de4426', title: 'Web & Design', uses: ['Websites & apps', 'Adobe Illustrator', 'Inkscape', 'Canva Pro'], best: 'Universal format — use this if unsure' },
               { ext: 'EPS', colour: '#ffaa45', title: 'Print & Vinyl', uses: ['Vinyl cutters & plotters', 'Screen printing', 'Large format print', 'CorelDRAW & Flexi'], best: 'Industry standard for sign & print' },
               { ext: 'DXF', colour: '#4ade80', title: 'CNC & Fabrication', uses: ['CNC routers', 'Plasma cutters', 'Laser cutters', 'Waterjet machines'], best: 'Machine-ready format for fabrication' },
               { ext: 'PDF', colour: '#60a5fa', title: 'Universal Print', uses: ['Print-ready files', 'Client proofs', 'Archiving', 'Any PDF viewer'], best: 'Best for sending to clients or printers' },
