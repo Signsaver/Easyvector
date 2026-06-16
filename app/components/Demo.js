@@ -24,7 +24,7 @@ const DISC = '#16181C';    // central disc (keeps brand black)
 const ACCENT = '#C0411E';  // orange accent: AFTER pill, handle ring, pen control dot
 const PIXEL_BLOCK = 9;      // higher = chunkier pixels on the BEFORE side
 const ASPECT = 0.42;        // stage height / width  (lower = wider / more panoramic)
-const MAX_WIDTH = 640;      // px cap on the demo card width (match your content column)
+const MAX_WIDTH = 960;      // px cap on the demo card width (match your content column)
 const MARGIN_Y = '2.5rem';  // equal space above and below the demo
 // ------------------------------------------------------------
 
@@ -46,7 +46,7 @@ export default function Demo() {
     const small = document.createElement('canvas');
     let curW = 0;
     let curH = 0;
-    let divFrac = 0.52;
+    let divFrac = 0.14;
     let userMoved = false;
     let rafId = null;
     let nudgeStart = null;
@@ -148,7 +148,7 @@ export default function Demo() {
       divFrac = x / curW;
       divider.style.left = x + 'px';
       handle.style.left = x + 'px';
-      before.style.clipPath = 'inset(0 ' + (curW - x) + 'px 0 0)';
+      before.style.clipPath = 'inset(0 0 0 ' + x + 'px)';
       stage.setAttribute('aria-valuenow', String(Math.round(divFrac * 100)));
     };
 
@@ -228,19 +228,21 @@ export default function Demo() {
       ro.observe(stage.parentNode || stage);
     }
 
-    const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+    const ease = (p) => 1 - Math.pow(1 - p, 3);
+    const nudgeStartFrac = 0.14;
+    const nudgeTargetFrac = 0.5;
     const nudge = (ts) => {
       if (userMoved) return;
       if (!nudgeStart) nudgeStart = ts;
-      const p = Math.min(1, (ts - nudgeStart) / 1700);
-      const f = 0.62 - 0.24 * Math.sin(ease(p) * Math.PI);
+      const p = Math.min(1, (ts - nudgeStart) / 1500);
+      const f = nudgeStartFrac + (nudgeTargetFrac - nudgeStartFrac) * ease(p);
       setDivider(f * curW);
       if (p < 1) rafId = requestAnimationFrame(nudge);
-      else setDivider(0.5 * curW);
+      else setDivider(nudgeTargetFrac * curW);
     };
     const nudgeTimer = setTimeout(() => {
       rafId = requestAnimationFrame(nudge);
-    }, 450);
+    }, 500);
 
     return () => {
       stage.removeEventListener('pointerdown', onDown);
@@ -260,8 +262,8 @@ export default function Demo() {
         .ev-demo-stage:focus-visible{box-shadow:0 0 0 3px rgba(192,65,30,0.5);}
         .ev-demo-canvas{position:absolute;top:0;left:0;display:block;width:100%;height:100%;}
         .ev-demo-pill{position:absolute;top:12px;z-index:5;font-size:12px;font-weight:600;letter-spacing:1.5px;padding:6px 13px;border-radius:20px;color:#F6F1E7;pointer-events:none;}
-        .ev-demo-before{left:12px;background:#3A3D41;}
-        .ev-demo-after{right:12px;background:${ACCENT};}
+        .ev-demo-before{right:12px;background:#3A3D41;}
+        .ev-demo-after{left:12px;background:${ACCENT};}
         .ev-demo-divider{position:absolute;top:0;bottom:0;width:2px;background:#F6F1E7;z-index:4;transform:translateX(-1px);pointer-events:none;}
         .ev-demo-handle{position:absolute;top:50%;z-index:6;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;background:#F6F1E7;border:3px solid ${ACCENT};box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:4px;pointer-events:none;}
         .ev-demo-handle span{width:4px;height:15px;border-radius:2px;background:${ACCENT};}
