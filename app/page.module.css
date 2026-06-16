@@ -112,6 +112,11 @@
   color: var(--accent); font-size: 0.78rem; font-weight: 600;
   padding: 0.3rem 0.75rem; border-radius: 4px;
 }
+/* Per-format colour coding (SVG vermillion, DXF green, EPS gold, PDF blue) */
+.fmtSvg { color: #DA4B26; border-color: #DA4B26; }
+.fmtDxf { color: #2E9C68; border-color: #2E9C68; }
+.fmtEps { color: #EFA722; border-color: #EFA722; }
+.fmtPdf { color: #3E84D6; border-color: #3E84D6; }
 .heroCardBtn {
   display: block; background: var(--accent); color: #f0ede8;
   padding: 0.85rem; font-weight: 700; border-radius: 8px;
