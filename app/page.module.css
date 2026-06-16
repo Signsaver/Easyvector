@@ -2,46 +2,50 @@
 /* BASE */
 .page { min-height: 100vh; }
 
-/* NAV */
+/* NAV — fluid sizing: full 1.5x on wide screens, eases down on smaller ones */
 .nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(10,11,12,0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
-  padding: 1rem 2.5rem;
-  display: flex; align-items: center; gap: 2rem;
+  padding: 1rem clamp(1.25rem, 2vw, 2.5rem);
+  display: flex; align-items: center; gap: clamp(1rem, 1.5vw, 2rem);
+}
+.nav > a img {
+  width: clamp(200px, 60px + 18vw, 420px);
+  height: auto;
 }
 .navLinks {
-  display: flex; align-items: center; gap: 2rem;
+  display: flex; align-items: center; gap: clamp(1.1rem, 1.3vw, 2rem);
   list-style: none; flex: 1;
 }
 .navLinks a {
-  font-size: 1.23rem; letter-spacing: 0.06em;
+  font-size: clamp(0.9rem, 0.4rem + 0.6vw, 1.23rem); letter-spacing: 0.06em;
   text-transform: uppercase; color: var(--muted);
   transition: color 0.2s;
 }
 .navLinks a:hover { color: var(--text); }
 .navSocials {
-  display: flex; align-items: center; gap: 1.1rem;
-  padding-right: 1.5rem; margin-right: 0.5rem;
+  display: flex; align-items: center; gap: clamp(0.8rem, 1vw, 1.1rem);
+  padding-right: clamp(1rem, 1.2vw, 1.5rem); margin-right: 0.5rem;
   border-right: 1px solid var(--border);
 }
 .navSocials a {
   color: var(--muted); transition: color 0.2s;
   display: flex; align-items: center;
 }
-.navSocials a svg { width: 30px; height: 30px; }
+.navSocials a svg { width: clamp(24px, 12px + 0.75vw, 30px); height: clamp(24px, 12px + 0.75vw, 30px); }
 .navSocials a:hover { color: var(--accent); }
 .navActions { display: flex; align-items: center; gap: 0.75rem; }
 .navSignIn {
-  font-size: 1.23rem; color: var(--muted);
+  font-size: clamp(0.9rem, 0.4rem + 0.6vw, 1.23rem); color: var(--muted);
   transition: color 0.2s; white-space: nowrap;
 }
 .navSignIn:hover { color: var(--text); }
 .navCta {
   background: var(--accent); color: #f0ede8;
-  padding: 0.75rem 1.8rem; font-weight: 600;
-  font-size: 1.23rem; border-radius: 6px;
+  padding: clamp(0.5rem, 0.7vw, 0.75rem) clamp(1.2rem, 1.6vw, 1.8rem); font-weight: 600;
+  font-size: clamp(0.9rem, 0.4rem + 0.6vw, 1.23rem); border-radius: 6px;
   white-space: nowrap; transition: background 0.2s;
 }
 .navCta:hover { background: var(--accent2); }
@@ -267,24 +271,6 @@
 .footerSocials a:hover { color: var(--accent); }
 
 /* RESPONSIVE */
-@media (max-width: 1500px) {
-  .nav > a img { width: 350px; height: auto; }
-  .navLinks { gap: 1.5rem; }
-  .navLinks a { font-size: 1.03rem; }
-  .navSignIn { font-size: 1.03rem; }
-  .navSocials a svg { width: 25px; height: 25px; }
-  .navCta { font-size: 1.03rem; padding: 0.65rem 1.5rem; }
-}
-@media (max-width: 1100px) {
-  .nav { gap: 1rem; padding: 1rem 1.5rem; }
-  .nav > a img { width: 280px; height: auto; }
-  .navLinks { gap: 1.1rem; }
-  .navLinks a { font-size: 0.82rem; }
-  .navSignIn { font-size: 0.82rem; }
-  .navSocials { gap: 0.9rem; padding-right: 1rem; }
-  .navSocials a svg { width: 20px; height: 20px; }
-  .navCta { font-size: 0.82rem; padding: 0.5rem 1.2rem; }
-}
 @media (max-width: 1024px) {
   .featuresGrid { grid-template-columns: repeat(2, 1fr); }
   .formatsGrid { grid-template-columns: repeat(3, 1fr); }
