@@ -125,6 +125,7 @@ export default function Dashboard() {
   const [resized, setResized] = useState(false);
   const [professionMode, setProfessionMode] = useState(PROFESSION_MODES[0]);
   const [prices, setPrices] = useState(PRICES.GBP);
+  const [billingLoading, setBillingLoading] = useState(false);
   const fileRef = useRef();
 
   useEffect(() => {
@@ -175,6 +176,25 @@ export default function Dashboard() {
     setProfessionMode(pm);
     setFormat(pm.defaultFormat);
     setMode(pm.apiMode);
+  }
+
+  async function handleManageBilling() {
+    if (billingLoading) return;
+    setBillingLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/billing-portal', { method: 'POST' });
+      const data = await res.json();
+      if (res.ok && data.url) {
+        window.location.href = data.url;
+      } else {
+        setError(data.error || 'Could not open billing. Please try again.');
+        setBillingLoading(false);
+      }
+    } catch (err) {
+      setError('Could not open billing. Please try again.');
+      setBillingLoading(false);
+    }
   }
 
   async function handleFile(f) {
@@ -272,6 +292,14 @@ export default function Dashboard() {
           {isFreePlan && (
             <a href="/#pricing" className={styles.upgradeBtn}>Upgrade</a>
           )}
+          <button
+            className={styles.upgradeBtn}
+            onClick={handleManageBilling}
+            disabled={billingLoading}
+            style={{ cursor: 'pointer', border: 'none' }}
+          >
+            {billingLoading ? 'Opening…' : 'Manage Billing'}
+          </button>
           <UserButton
             afterSignOutUrl="/"
             appearance={{
@@ -304,20 +332,12 @@ export default function Dashboard() {
           <p>Select your trade, upload a bitmap, and download a perfect vector in seconds.</p>
         </div>
 
-        {/* FREE TRIAL BANNER */}
-        {isFreePlan && freeTracesLeft > 0 && (
-          <div className={styles.freeBanner}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <span>You have <strong>{freeTracesLeft} free trace{freeTracesLeft !== 1 ? 's' : ''}</strong> — try it now, no credit card needed!</span>
-          </div>
-        )}
-
         {/* UPGRADE BANNER */}
         {freeTracesLeft <= 0 && (
           <div className={styles.upgradeBanner}>
             <div>
               <strong>No credits remaining!</strong>
-              <p>Upgrade to get more traces and all output formats. Plans from {s}{prices.hobby}/mo.</p>
+              <p>Buy a single trace or subscribe to keep going. Plans from {s}{prices.hobby}/mo.</p>
             </div>
             <a href="/#pricing" className={styles.upgradeBannerBtn}>View Plans →</a>
           </div>
