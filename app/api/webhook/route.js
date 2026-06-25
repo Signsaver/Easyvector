@@ -8,12 +8,14 @@ export const dynamic = 'force-dynamic';
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-const PRICE_CREDITS = {
-  [process.env.NEXT_PUBLIC_STRIPE_PRICE_PAYG_1]: { credits: 1, plan: 'payg' },
-  [process.env.NEXT_PUBLIC_STRIPE_PRICE_PAYG_5]: { credits: 5, plan: 'payg' },
-  [process.env.NEXT_PUBLIC_STRIPE_PRICE_HOBBY]: { credits: 50, plan: 'hobby' },
-  [process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO]: { credits: 150, plan: 'pro' },
-  [process.env.NEXT_PUBLIC_STRIPE_PRICE_STUDIO]: { credits: 350, plan: 'studio' },
+// Used ONLY to look up the plan name for the welcome email.
+// Credits are NOT granted from this map — they come from the checkout session
+// metadata (set in create-checkout/route.js), which is the single source of truth.
+const PRICE_PLANS = {
+  [process.env.NEXT_PUBLIC_STRIPE_PRICE_PAYG_1]: { plan: 'payg' },
+  [process.env.NEXT_PUBLIC_STRIPE_PRICE_PAYG_5]: { plan: 'payg' },
+  [process.env.NEXT_PUBLIC_STRIPE_PRICE_HOBBY]: { plan: 'hobby' },
+  [process.env.NEXT_PUBLIC_STRIPE_PRICE_STUDIO]: { plan: 'studio' },
 };
 
 export async function POST(request) {
@@ -31,15 +33,14 @@ export async function POST(request) {
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
+        // SINGLE source of credit grants — fires for both one-off and subscription
+        // checkouts. Credits and plan come from the metadata set in create-checkout.
         const session = event.data.object;
         const userId = session.metadata?.userId;
         const creditsToAdd = parseInt(session.metadata?.credits || '0');
         const plan = session.metadata?.plan || 'payg';
-
         if (!userId || creditsToAdd === 0) break;
-
         await addCredits(userId, creditsToAdd, plan);
-
         if (session.customer) {
           await updateStripeCustomer(
             userId,
@@ -47,29 +48,18 @@ export async function POST(request) {
             session.subscription || null
           );
         }
-
         console.log(`Added ${creditsToAdd} credits to user ${userId}`);
         break;
       }
 
       case 'customer.subscription.created': {
+        // Welcome email ONLY. Credits are already granted by
+        // checkout.session.completed above — do NOT add them here, or every
+        // subscriber is double-credited.
         const subscription = event.data.object;
         const priceId = subscription.items?.data[0]?.price?.id;
-        const priceInfo = PRICE_CREDITS[priceId];
-
+        const priceInfo = PRICE_PLANS[priceId];
         if (!priceInfo) break;
-
-        const { supabaseAdmin } = await import('../../../lib/supabase');
-        const { data: users } = await supabaseAdmin
-          .from('user_credits')
-          .select('user_id')
-          .eq('stripe_customer_id', subscription.customer);
-
-        if (users?.[0]?.user_id) {
-          await addCredits(users[0].user_id, priceInfo.credits, priceInfo.plan);
-        }
-
-        // Send welcome email — look up customer email from Stripe
         try {
           const customer = await stripe.customers.retrieve(subscription.customer);
           if (customer?.email && !customer.deleted) {
@@ -82,7 +72,6 @@ export async function POST(request) {
           // Don't fail the webhook if email sending fails
           console.error('Welcome email failed:', emailErr.message);
         }
-
         break;
       }
 
@@ -97,7 +86,6 @@ export async function POST(request) {
         break;
       }
     }
-
     return Response.json({ received: true });
   } catch (err) {
     console.error('Webhook handler error:', err);
