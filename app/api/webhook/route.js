@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { addCredits, updateStripeCustomer } from '../../../lib/supabase';
+import { addCredits, setCredits, updateStripeCustomer } from '../../../lib/supabase';
 import { sendWelcomeEmail } from '../../../lib/email';
 
 export const runtime = 'nodejs';
@@ -18,6 +18,14 @@ const PRICE_PLANS = {
   [process.env.NEXT_PUBLIC_STRIPE_PRICE_STUDIO]: { plan: 'studio' },
 };
 
+// Monthly credit allowance per plan — used ONLY to RESET credits on each
+// successful renewal (invoice.paid / subscription_cycle). Keyed by the plan
+// name stored in our own database, not by Stripe price ID.
+const PLAN_MONTHLY_CREDITS = {
+  hobby: 50,
+  studio: 150,
+};
+
 export async function POST(request) {
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
@@ -33,8 +41,9 @@ export async function POST(request) {
   try {
     switch (event.type) {
       case 'checkout.session.completed': {
-        // SINGLE source of credit grants — fires for both one-off and subscription
-        // checkouts. Credits and plan come from the metadata set in create-checkout.
+        // SINGLE source of credit grants at signup/purchase — fires for both
+        // one-off and subscription checkouts. Credits and plan come from the
+        // metadata set in create-checkout.
         const session = event.data.object;
         const userId = session.metadata?.userId;
         const creditsToAdd = parseInt(session.metadata?.credits || '0');
@@ -49,6 +58,38 @@ export async function POST(request) {
           );
         }
         console.log(`Added ${creditsToAdd} credits to user ${userId}`);
+        break;
+      }
+
+      case 'invoice.paid': {
+        // Monthly renewal — RESET the subscriber's credits to their plan
+        // allowance (fresh 50/150 each cycle; unused credits do not roll over).
+        //
+        // We only act on 'subscription_cycle': the recurring renewal. The very
+        // first invoice is 'subscription_create' (already credited above by
+        // checkout.session.completed), so it is deliberately skipped to avoid
+        // double-crediting in month one. Because we SET rather than add, this
+        // is also idempotent if Stripe redelivers the event.
+        const invoice = event.data.object;
+        if (invoice.billing_reason !== 'subscription_cycle') break;
+
+        const customerId = invoice.customer;
+        if (!customerId) break;
+
+        const { supabaseAdmin } = await import('../../../lib/supabase');
+        const { data: users } = await supabaseAdmin
+          .from('user_credits')
+          .select('user_id, plan')
+          .eq('stripe_customer_id', customerId);
+
+        const userRow = users?.[0];
+        if (!userRow?.user_id) break;
+
+        const monthlyCredits = PLAN_MONTHLY_CREDITS[userRow.plan];
+        if (!monthlyCredits) break; // unknown / non-subscription plan — nothing to reset
+
+        await setCredits(userRow.user_id, monthlyCredits, userRow.plan);
+        console.log(`Renewal: reset ${userRow.plan} credits to ${monthlyCredits} for customer ${customerId}`);
         break;
       }
 
