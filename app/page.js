@@ -192,7 +192,8 @@ export default function Home() {
               <SingleTraceButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
-            <div className={styles.priceCard}>
+            <div className={`${styles.priceCard} ${styles.featured}`}>
+              <div className={styles.priceBadge}>Most Popular</div>
               <h3 className={styles.planName}>Hobby</h3>
               <div className={styles.planPrice}><sup>{s}</sup>{prices.hobby}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
@@ -203,11 +204,10 @@ export default function Home() {
                 <li className={styles.highlight}>Email support</li>
                 <li>Single user</li>
               </ul>
-              <HobbyButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
+              <HobbyButton className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
-            <div className={`${styles.priceCard} ${styles.featured}`}>
-              <div className={styles.priceBadge}>Most Popular</div>
+            <div className={styles.priceCard}>
               <h3 className={styles.planName}>Studio</h3>
               <div className={styles.planPrice}><sup>{s}</sup>{prices.studio}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
@@ -219,7 +219,7 @@ export default function Home() {
                 <li className={styles.highlight}>API access</li>
                 <li className={styles.highlight}>Priority support &amp; onboarding</li>
               </ul>
-              <StudioButton className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
+              <StudioButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
           </div>
