@@ -5,11 +5,13 @@
 export const PRICES = {
   GBP: {
     symbol: '£',
+    trace: '2',
     hobby: '11.99',
     studio: '19.99',
   },
   USD: {
     symbol: '$',
+    trace: '3',
     hobby: '14.99',
     studio: '24.99',
   },
