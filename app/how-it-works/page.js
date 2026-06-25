@@ -21,7 +21,7 @@ export default function HowItWorksPage() {
         </ul>
         <div className={styles.navActions}>
           <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
-          <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
+          <Link href="/sign-up" className={styles.navCta}>Get Started</Link>
         </div>
       </nav>
 
@@ -109,8 +109,8 @@ export default function HowItWorksPage() {
               {
                 n: '01',
                 icon: '📁',
-                title: 'Register & get your free trace',
-                body: 'Create your account in seconds — no credit card required. You get 1 free production trace immediately so you can test the quality before committing.',
+                title: 'Register in seconds',
+                body: 'Create your account in seconds — no credit card needed to sign up. Add a single trace or a monthly plan whenever you are ready to trace.',
               },
               {
                 n: '02',
@@ -122,7 +122,7 @@ export default function HowItWorksPage() {
                 n: '03',
                 icon: '⚙️',
                 title: 'Choose your settings',
-                body: 'Select your output format (SVG, DXF, EPS, PDF), processing mode (Test for free preview, Production for full quality), and colour mode (Auto, Full Colour, or Black & White).',
+                body: 'Pick your trade, your output format (SVG, DXF, EPS, PDF), and colour mode (Auto, Full Colour, or Black & White). Each trade preset sets sensible defaults for you.',
               },
               {
                 n: '04',
@@ -213,11 +213,11 @@ export default function HowItWorksPage() {
           <div className={styles.faqGrid}>
             {[
               { q: 'How good is the output quality?', a: 'Very good for logos, illustrations, icons, and simple artwork. Complex photographic images will produce a stylised vector interpretation rather than a photorealistic result — which is normal for any vectorization tool.' },
-              { q: 'What\'s the difference between Test and Production mode?', a: 'Test mode is completely free and produces a watermarked preview so you can check quality before spending a credit. Production mode uses 1 credit and delivers a clean, full-resolution vector with no watermark.' },
-              { q: 'How many credits do I need?', a: 'Each vectorization uses 1 credit. A typical sign shop processing 5–10 client files per day would suit our Pro plan (150 credits/month). Occasional users often start on Hobby (50/month).' },
+              { q: 'Do I have to subscribe?', a: 'No. Buy a single trace for £2 with no commitment, or subscribe to Hobby or Studio for a pool of monthly credits at a lower price per trace. Start with a single trace and upgrade whenever it makes sense.' },
+              { q: 'How many credits do I need?', a: 'Each vectorization uses 1 credit. A busy sign shop processing several client files a day suits Studio (150 credits/month). Occasional users do well on Hobby (50/month). Just need one file? Buy a single trace for £2 — no subscription.' },
               { q: 'Can I use it for AI-generated artwork?', a: 'Yes — this is one of the core use cases. AI image tools like Midjourney, DALL-E and Adobe Firefly output PNG or JPG files. EasyVector converts these to usable vectors instantly.' },
-              { q: 'Is there an API for automation?', a: 'Yes. Our Studio and Agency plans include API access so you can integrate vectorization directly into your own systems and customer portals.' },
-              { q: 'What if the result isn\'t what I expected?', a: 'Use Test mode first to preview the result before spending a credit. If you have an issue with a production trace, contact us at hello@easyvector.ai and we\'ll help.' },
+              { q: 'Is there an API for automation?', a: 'Yes. The Studio plan includes API access so you can integrate vectorization directly into your own systems and customer portals.' },
+              { q: 'What if the result isn\'t what I expected?', a: 'Output quality is strongest on logos, icons and clean artwork. If a trace doesn\'t come out as expected, contact us at hello@easyvector.ai and we\'ll help.' },
             ].map((faq, i) => (
               <div key={i} className={styles.faqCard}>
                 <h3>{faq.q}</h3>
@@ -233,7 +233,7 @@ export default function HowItWorksPage() {
         <div className={styles.wrap}>
           <h2>READY TO STOP REDRAWING?</h2>
           <p>Join sign makers, print shops and fabricators who&apos;ve made client artwork headaches a thing of the past.</p>
-          <Link href="/sign-up" className={styles.btnPrimary}>Register Free — Get Your First Trace</Link>
+          <Link href="/sign-up" className={styles.btnPrimary}>Get Started</Link>
         </div>
       </section>
 
