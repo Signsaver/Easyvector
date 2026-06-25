@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import styles from './page.module.css';
 import Demo from './components/Demo';
-import { HobbyButton, ProButton, StudioButton } from './components/CheckoutButtons';
+import { HobbyButton, StudioButton } from './components/CheckoutButtons';
+import { SingleTraceButton } from './components/SingleTraceButton';
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 import { getCurrency, PRICES } from './lib/pricing';
 
@@ -51,7 +52,7 @@ export default function Home() {
           </SignedIn>
           <SignedOut>
             <Link href="/sign-in" className={styles.navSignIn}>Sign In</Link>
-            <Link href="/sign-up" className={styles.navCta}>Try Free — Register</Link>
+            <Link href="/sign-up" className={styles.navCta}>Get Started</Link>
           </SignedOut>
         </div>
       </nav>
@@ -65,7 +66,7 @@ export default function Home() {
           <h1>Client sent you an <span>AI logo</span><br/>again?</h1>
           <p className={styles.heroSub}>AI-generated images look great — until your client sends one as a PNG and expects it cut, printed or routed by end of day. No nodes. No paths. Just pixels. EasyVector converts it to a clean, production-ready vector in seconds — no redrawing in Illustrator, no wasted hours.</p>
           <div className={styles.heroActions}>
-            <Link href="/sign-up" className={styles.btnPrimary}>Try Free — Register Now</Link>
+            <Link href="/sign-up" className={styles.btnPrimary}>Get Started</Link>
             <a href="#pricing" className={styles.btnGhost}>View Pricing</a>
           </div>
           <div className={styles.heroBadge}>
@@ -84,7 +85,7 @@ export default function Home() {
               <span className={`${styles.formatTag} ${styles.fmtPdf}`}>PDF</span>
             </div>
             <div className={styles.heroCardLabel}>Download production-ready vectors</div>
-            <Link href="/sign-up" className={styles.heroCardBtn}>Start Free →</Link>
+            <Link href="/sign-up" className={styles.heroCardBtn}>Get Started →</Link>
           </div>
         </div>
       </section>
@@ -130,7 +131,7 @@ export default function Home() {
           <h2 className={styles.sectionTitle}>From photo to plotter in seconds</h2>
           <div className={styles.steps}>
             {[
-              { n: '01', title: 'Register free', text: 'Create your account in seconds and get 1 free trace — no credit card needed.' },
+              { n: '01', title: 'Register in seconds', text: 'Create your free account in seconds — no card needed to sign up.' },
               { n: '02', title: 'Upload your image', text: 'Drag and drop any PNG, JPG, GIF, WebP or BMP. We accept up to 30MB per file.' },
               { n: '03', title: 'Choose your format', text: 'Select SVG, DXF, EPS or PDF — each mode tuned for your specific output.' },
               { n: '04', title: 'Download & use', text: 'Open straight in your cutter software, Illustrator or CorelDRAW and go.' },
@@ -174,21 +175,21 @@ export default function Home() {
         <div className={styles.wrap}>
           <div className={styles.sectionLabel}>Pricing</div>
           <h2 className={styles.sectionTitle}>Straightforward plans — register free, upgrade anytime</h2>
-          <div className={styles.pricingSubtitle}>All paid plans include a 14-day free trial. No credit card required to register.</div>
+          <div className={styles.pricingSubtitle}>Register free — then pay per trace or save with a monthly plan.</div>
 
-          <div className={styles.pricingGrid4}>
+          <div className={styles.pricingGrid4} style={{gridTemplateColumns:'repeat(3, minmax(0, 1fr))', maxWidth:'1080px', margin:'0 auto'}}>
 
             <div className={styles.priceCard}>
-              <h3 className={styles.planName}>Free</h3>
-              <div className={styles.planPrice}><sup>{s}</sup>0</div>
-              <div className={styles.planPeriod}>1 trace on registration</div>
+              <h3 className={styles.planName}>Single Trace</h3>
+              <div className={styles.planPrice}><sup>{s}</sup>{prices.trace}</div>
+              <div className={styles.planPeriod}>one-off · no subscription</div>
               <ul className={styles.planFeatures}>
-                <li>1 free trace</li>
-                <li>SVG &amp; PNG output</li>
-                <li>Max 5MB file size</li>
-                <li>Community support</li>
+                <li className={styles.highlight}>1 vector trace</li>
+                <li className={styles.highlight}>SVG, EPS, DXF &amp; PDF output</li>
+                <li className={styles.highlight}>Pay as you go</li>
+                <li>No monthly commitment</li>
               </ul>
-              <Link href="/sign-up" className={styles.btnGhost} style={{display:'block',textAlign:'center'}}>Get Started Free</Link>
+              <SingleTraceButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
             <div className={styles.priceCard}>
@@ -207,42 +208,20 @@ export default function Home() {
 
             <div className={`${styles.priceCard} ${styles.featured}`}>
               <div className={styles.priceBadge}>Most Popular</div>
-              <h3 className={styles.planName}>Pro</h3>
-              <div className={styles.planPrice}><sup>{s}</sup>{prices.pro}</div>
-              <div className={styles.planPeriod}>per month · billed monthly</div>
-              <ul className={styles.planFeatures}>
-                <li className={styles.highlight}>150 traces / month</li>
-                <li className={styles.highlight}>All 6 output formats</li>
-                <li className={styles.highlight}>Colour separation</li>
-                <li className={styles.highlight}>Batch upload (up to 20)</li>
-                <li className={styles.highlight}>Priority email support</li>
-                <li>Max 30MB file size</li>
-              </ul>
-              <ProButton className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
-            </div>
-
-            <div className={styles.priceCard}>
               <h3 className={styles.planName}>Studio</h3>
               <div className={styles.planPrice}><sup>{s}</sup>{prices.studio}</div>
               <div className={styles.planPeriod}>per month · billed monthly</div>
               <ul className={styles.planFeatures}>
-                <li className={styles.highlight}>350 traces / month</li>
+                <li className={styles.highlight}>150 traces / month</li>
                 <li className={styles.highlight}>All 6 output formats</li>
                 <li className={styles.highlight}>Colour separation</li>
                 <li className={styles.highlight}>Batch upload (up to 50)</li>
                 <li className={styles.highlight}>API access</li>
                 <li className={styles.highlight}>Priority support &amp; onboarding</li>
               </ul>
-              <StudioButton className={styles.btnGhost} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
+              <StudioButton className={styles.btnPrimary} style={{display:'block',textAlign:'center',width:'100%',cursor:'pointer'}} />
             </div>
 
-          </div>
-          <div className={styles.pricingAgency}>
-            <div className={styles.agencyLeft}>
-              <strong>Agency / High Volume?</strong>
-              <span>Need 750+ traces/month, white-label, or a custom API plan? We&apos;ll build a package around your volume.</span>
-            </div>
-            <a href="mailto:hello@easyvector.ai" className={styles.btnPrimary}>Contact Us — {s}{prices.agency}+/mo</a>
           </div>
         </div>
       </section>
@@ -273,7 +252,7 @@ export default function Home() {
         <div className={styles.wrap}>
           <h2>Ready to trace?</h2>
           <p>Join sign makers, exhibition stand builders, print shops and promo gift suppliers who&apos;ve made client artwork headaches a thing of the past.</p>
-          <Link href="/sign-up" className={styles.btnPrimary}>Register Free — Get Your First Trace</Link>
+          <Link href="/sign-up" className={styles.btnPrimary}>Get Started</Link>
         </div>
       </section>
 
